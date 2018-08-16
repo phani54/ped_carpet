@@ -8,7 +8,7 @@ class Bootstrap {
 				require 'views/home.php';
 				return false;
 		} else if ($url[0]=='views') {
-				require '404.html';
+				require '404.php';
 				return false;
 		} else {
 			if(!empty($url[0]) && empty($url[1]) && $url[0] !== 'action') {
@@ -16,7 +16,7 @@ class Bootstrap {
 				if(file_exists($file)) {
 					require $file;
 				} else {
-					require '404.html';
+					require '404.php';
 					return false;
 				}
 			} else if($url[0] === 'action' && !empty($url[1]) && empty($url[2])) {
@@ -24,7 +24,7 @@ class Bootstrap {
 				if(file_exists($file)) {
 					require $file;
 				} else {
-					require '404.html';
+					require '404.php';
 					return false;
 				}
 			}

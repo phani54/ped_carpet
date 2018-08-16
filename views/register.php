@@ -25,10 +25,10 @@ include "inner_header.php";
 						<form id="reg_form" method="post" autocomplete="off" autofocus="off" name="reg_form">
 						    <h1 style="color: #ed3237;">Register FREE</h1>
 							<label>
-                                <input type="radio" checked="" name="p_gender" id="p_gender_f" value="female">Bride
+                                <input type="radio" checked="" name="p_gender" id="p_gender_f" value="Female">Bride
                             </label>&nbsp;&nbsp;
 							<label>
-                                <input type="radio" name="p_gender" id="p_gender_m" value="male">Groom
+                                <input type="radio" name="p_gender" id="p_gender_m" value="Male">Groom
                             </label>
 							<br><br>
 							<div class="input-group" id="hidestate">
@@ -47,7 +47,7 @@ include "inner_header.php";
                             </div> 
                             <div class="input-group">
                                 <div class="input-group-addon">
-                                    Full Name 
+                                    Name 
                                     <span style="color:red">*</span>
                                 </div>
                                 <input type="text" class="form-control"  value="" name="name" id="name">

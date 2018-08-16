@@ -22,15 +22,15 @@ $date = date('Y-m-d H:i:s');
 // exit;
 if(isset($_POST) && $_POST['action'] == 'login')
 {
-    $chk = $db->query("SELECT * FROM `register` WHERE (`user_id`='".$_POST['mobile']."' OR `mobile`='".$_POST['mobile']."') and password='".$_POST['password']."'")->fetch();
+    $chk = $db->query("SELECT id,gender FROM `profiles` WHERE (`profile_id`='".$_POST['mobile']."' OR `mobile`='".$_POST['mobile']."') and password='".$_POST['password']."'")->fetch();
 	
-    if($chk['guid'] == '')
+    if($chk['id'] == '')
     {
         echo json_encode(array('status'=>'error')); exit; 
     } 
     else 
     {		
-		$_SESSION['session_uid']=$chk['guid'];
+		$_SESSION['id']=$chk['id'];
 		if($chk['gender'] == 'Male')
 			$_SESSION['show_gender']='Female';
 		else
@@ -42,10 +42,10 @@ if(isset($_POST) && $_POST['action'] == 'login')
 
 if(isset($_POST) && $_POST['action']== 'sent_intrest')
 {
-	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 	if($chk_qry->rowCount() > 0)
 	{
-		$update_qry = $db->query("UPDATE profile_interests SET interest = (interest ^ 1),interest_sent_on='$date' WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+		$update_qry = $db->query("UPDATE profile_interests SET interest = (interest ^ 1),interest_sent_on='$date' WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 		if($update_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -53,7 +53,7 @@ if(isset($_POST) && $_POST['action']== 'sent_intrest')
 	}
 	else
 	{
-		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`, `interest`, `interest_sent_on`)VALUES('".$_SESSION['session_uid']."','".$_POST['profile_id']."',1,'$date')");
+		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`, `interest`, `interest_sent_on`)VALUES('".$_SESSION['id']."','".$_POST['profile_id']."',1,'$date')");
 		if($insert_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -63,10 +63,10 @@ if(isset($_POST) && $_POST['action']== 'sent_intrest')
 
 if(isset($_POST) && $_POST['action']== 'view_mobile')
 {
-	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 	if($chk_qry->rowCount() > 0)
 	{
-		$update_qry = $db->query("UPDATE profile_interests SET sms = (sms ^ 1),sms_sent_on='$date' WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+		$update_qry = $db->query("UPDATE profile_interests SET sms = (sms ^ 1),sms_sent_on='$date' WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 		if($update_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -74,7 +74,7 @@ if(isset($_POST) && $_POST['action']== 'view_mobile')
 	}
 	else
 	{
-		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`,  `sms`, `sms_sent_on`)VALUES('".$_SESSION['session_uid']."','".$_POST['profile_id']."',1,'$date')");
+		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`,`sms`, `sms_sent_on`)VALUES('".$_SESSION['id']."','".$_POST['profile_id']."',1,'$date')");
 		if($insert_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -84,10 +84,10 @@ if(isset($_POST) && $_POST['action']== 'view_mobile')
 
 if(isset($_POST) && $_POST['action']== 'shortlist')
 {
-	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+	$chk_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 	if($chk_qry->rowCount() > 0)
 	{
-		$update_qry = $db->query("UPDATE profile_interests SET shorlist = (shorlist ^ 1),shorlisted_on='$date' WHERE viewer_id='".$_SESSION['session_uid']."' AND profile_id='".$_POST['profile_id']."'");
+		$update_qry = $db->query("UPDATE profile_interests SET shorlist = (shorlist ^ 1),shorlisted_on='$date' WHERE viewer_id='".$_SESSION['id']."' AND profile_id='".$_POST['profile_id']."'");
 		if($update_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -95,7 +95,7 @@ if(isset($_POST) && $_POST['action']== 'shortlist')
 	}
 	else
 	{
-		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`, `shorlist`, `shorlisted_on`)VALUES('".$_SESSION['session_uid']."','".$_POST['profile_id']."',1,'$date')");
+		$insert_qry = $db->query("INSERT INTO profile_interests (`viewer_id`, `profile_id`, `shorlist`, `shorlisted_on`)VALUES('".$_SESSION['id']."','".$_POST['profile_id']."',1,'$date')");
 		if($insert_qry)
 		{
 			echo json_encode(array('status'=>'success')); 
@@ -107,13 +107,13 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 {
 	$digits = 6;
 	$otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
-	$chk_qry = $db->query("SELECT guid,otp_flag,gender FROM register WHERE mobile='".$_POST['mobile']."'");
+	$chk_qry = $db->query("SELECT `id`,`otp_flag`,`gender` FROM `profiles` WHERE `mobile`='".$_POST['mobile']."'");
 	if($chk_qry->rowCount() > 0)
 	{
 		$chk = $chk_qry->fetch();
 		if($chk['otp_flag'] == 1)
 		{
-			$_SESSION['session_uid']=$chk['guid'];
+			$_SESSION['id']=$chk['id'];
 			if($chk['gender'] == 'Male')
 				$_SESSION['show_gender']='Female';
 			else
@@ -122,7 +122,7 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 		}
 		else
 		{
-			$update_qry = $db->query("UPDATE register SET profilefor='".$_POST['p_created_by']."',mobile='".$_POST['mobile']."',name='".$_POST['name']."',email='".$_POST['email']."',password='".$_POST['pwd']."',otp='".$otp."' WHERE mobile='".$_POST['mobile']."'");
+			$update_qry = $db->query("UPDATE profiles SET profile_for='".$_POST['p_created_by']."',mobile='".$_POST['mobile']."',name='".$_POST['name']."',email='".$_POST['email']."',password='".$_POST['pwd']."',otp='".$otp."' WHERE mobile='".$_POST['mobile']."'");
 			if($update_qry)
 			{
 				//Write sent sms code here
@@ -132,7 +132,7 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 	}
 	else
 	{
-		$insert_qry = $db->query("INSERT INTO register(profilefor,mobile,name,email,password,otp) VALUES('".$_POST['p_created_by']."','".$_POST['mobile']."','".$_POST['name']."','".$_POST['email']."','".$_POST['pwd']."','".$otp."')");
+		$insert_qry = $db->query("INSERT INTO profiles(`profile_for`,`mobile`,`name`,`email`,`password`,`otp`) VALUES('".$_POST['p_created_by']."','".$_POST['mobile']."','".$_POST['name']."','".$_POST['email']."','".$_POST['pwd']."','".$otp."')");
 		if($insert_qry)
 		{
 			//Write sent sms code here
@@ -146,14 +146,14 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 }
 if(isset($_POST) && $_POST['action'] == 'auth_otp')
 {
-	$chk_qry = $db->query("SELECT guid,otp_flag,gender FROM register WHERE mobile='".$_POST['hdn_mobile']."' AND otp='".$_POST['otp']."'");
+	$chk_qry = $db->query("SELECT id,otp_flag,gender FROM profiles WHERE mobile='".$_POST['hdn_mobile']."' AND otp='".$_POST['otp']."'");
 	if($chk_qry->rowCount() > 0)
 	{
-		$update_qry = $db->query("UPDATE register SET otp_flag=1 WHERE mobile='".$_POST['hdn_mobile']."'");
+		$update_qry = $db->query("UPDATE profiles SET otp_flag=1 WHERE mobile='".$_POST['hdn_mobile']."'");
 		if($update_qry)
 		{
 			$chk = $chk_qry->fetch();
-			$_SESSION['session_uid']=$chk['guid'];
+			$_SESSION['id']=$chk['id'];
 			if($chk['gender'] == 'Male')
 				$_SESSION['show_gender']='Female';
 			else
@@ -172,7 +172,7 @@ if(isset($_POST) && $_POST['action'] == 'auth_otp')
 }
 if(isset($_POST) && $_POST['action'] == 'resend_otp')
 {
-	$chk_qry = $db->query("SELECT otp FROM register WHERE mobile='".$_POST['hdn_mobile']."'");
+	$chk_qry = $db->query("SELECT otp FROM profiles WHERE mobile='".$_POST['hdn_mobile']."'");
 	if($chk_qry->rowCount() > 0)
 	{
 		$res = $chk_qry->fetch();

@@ -63,12 +63,12 @@ input[type=checkbox], input[type=radio] {
 
 <body>
 <?php 
-if(isset($_SESSION['Login_Session']))
+if(isset($_SESSION['id']))
 {
-    $get_shortlist_qry = $db->query("SELECT * FROM profile_interests WHERE shorlist=1 AND viewer_id=".$_SESSION['Login_Session']);
+    $get_shortlist_qry = $db->query("SELECT * FROM profile_interests WHERE shorlist=1 AND viewer_id=".$_SESSION['id']);
     $shortlist_count = $get_shortlist_qry->rowCount();
 
-    $get_interest_qry = $db->query("SELECT * FROM profile_interests WHERE interest=1 AND viewer_id=".$_SESSION['Login_Session']);
+    $get_interest_qry = $db->query("SELECT * FROM profile_interests WHERE interest=1 AND viewer_id=".$_SESSION['id']);
     $interest_count = $get_interest_qry->rowCount();
 }
 ?>
@@ -77,7 +77,7 @@ if(isset($_SESSION['Login_Session']))
     <div class="container">
       <div class="col-sm-3">
         <div align="center"> <a href="#"><img src="<?php echo URL;?>images/my-home-page-banners1.gif" class="img-responsive"/></a> </div>
-        <?php if(isset($_SESSION['Login_Session']))
+        <?php if(isset($_SESSION['id']))
         { ?>
         <div class="tabbable-panel">
           <h3>Your Activity Board</h3>
@@ -148,18 +148,18 @@ if(isset($_SESSION['Login_Session']))
                     {
                         if($_GET['age_from']!='' && $_GET['age_to']!='')
                         {
-                            $condition.= " AND txtAge BETWEEN ".$_GET['age_from']." AND ".$_GET['age_to']."";
+                            $condition.= " AND age BETWEEN ".$_GET['age_from']." AND ".$_GET['age_to']."";
                             $other_params.= 'age_from='.$_GET['age_from'].'&';
                             $other_params.= 'age_to='.$_GET['age_to'].'&';
                         }
                         else if($_GET['age_from']!='')
                         {
-                            $condition.= " AND txtAge >=".$_GET['age_from']."";
+                            $condition.= " AND age >=".$_GET['age_from']."";
                             $other_params.= 'age_from='.$_GET['age_from'].'&age_to=&';
                         }
                         else
                         {
-                            $condition.= " AND txtAge <=".$_GET['age_from']."";
+                            $condition.= " AND age <=".$_GET['age_from']."";
                             $other_params.= 'age_to='.$_GET['age_to'].'&age_from=&';
                         }
                     }
@@ -170,39 +170,20 @@ if(isset($_SESSION['Login_Session']))
                     }
                 }
                 $other_params.= 'search=profile_search';
-                $get_rows = $db->query("SELECT * FROM `register` WHERE guid!=0 $condition");
+                $get_rows = $db->query("SELECT * FROM `profiles` WHERE id!=0 $condition");
                 $paging = make_pages($page,$limit,$get_rows->rowCount(),'search_result.php',$other_params);
                 $page = $limit*($page-1);
-                $rth = $db->query("SELECT * FROM `register` WHERE guid!=0 $condition ORDER BY `dateandtime` DESC limit $page,$limit");
+                $rth = $db->query("SELECT * FROM `profiles` WHERE id!=0 $condition ORDER BY `created_on` DESC limit $page,$limit");
                 if($rth->rowCount() > 0)
                 {
                     while($row = $rth->fetch())
                     {
-                        if($row['txtOccupation']!=0)
-                        {
-                            $accupation_qry = $db->query("SELECT `name` FROM `occupations` WHERE guid=".$row['txtOccupation'])->fetch();
-                            $accupation =  $accupation_qry['name'];
-                        }
-                        else
-                        {
-                            $accupation = 'N/A';
-                        }
-                        if($row['dnation']!=0)
-                        {
-                            $dnation_qry = $db->query("SELECT `name` FROM `denominations` WHERE guid=".$row['dnation'])->fetch();
-                            $dnation =  $dnation_qry['name'];
-                        }
-                        else
-                        {
-                            $dnation = 'N/A';
-                        }
-
                         $interest = 0;
                         $sms = 0;
                         $shortlist = 0;
                         if(isset($_SESSION['Login_Session']))
                         {
-                            $interest_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['Login_Session']."' AND profile_id=".$row['guid']);
+                            $interest_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['id']."' AND profile_id=".$row['id']);
                             if($interest_qry->rowCount() > 0)
                             {
                                 $res = $interest_qry->fetch();
@@ -216,18 +197,18 @@ if(isset($_SESSION['Login_Session']))
             <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
               <div class="padt10 padl10 padb10 padr5">
                 <div>
-                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt"><?php echo $row['user_id'];?></a></div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt"><?php echo $row['profile_id'];?></a></div>
                   <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
-                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> <?php echo $row['profilefor'];?></div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> <?php echo $row['profile_for'];?></div>
                   <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><?php 
-                    ?><a href='<?php echo URL_VIEW."dashboard.php?page=1&similer=".$row['guid']; ?>' class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                    ?><a href='<?php echo URL_VIEW."dashboard.php?page=1&similer=".$row['id']; ?>' class="clr6 srch-line">View Similar Profiles</a></span> </div>
                   <div class="clear"></div>
                 </div>
                 <div class="fleft padt10 col-sm-3">
                   <div class="ph-imgbg bgclr5 txt-center">
                     <div class="pad10"><a href="">
                       <div class="posrelative">
-                        <div><img width="150" height="150" border="0" src="<?php echo URL;?>adminupload/<?php echo $row['txtImage1'];?>"></div>
+                        <div><img width="150" height="150" border="0" src="<?php echo URL;?>adminupload/<?php echo $row['image'];?>"></div>
                       </div>
                       </a>
                      
@@ -237,11 +218,11 @@ if(isset($_SESSION['Login_Session']))
                 <div class="fleft padl10 col-sm-9" >
                   <div class="fleft mediumtxt" >
                     <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" ><?php echo ucwords($row['name']) ;?></a></div>
-                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> <?php echo ucfirst($row['txtCity']);?>, <?php echo substr(ucfirst($row['txtCaddress']),0,11);?>, In..</div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> <?php echo ucfirst($row['city']);?>, <?php echo substr(ucfirst($row['address']),0,11);?>, In..</div>
                   </div>
 				  
                 <div class="fleft padt20" style="float: right;"> 
-                    <span   <?php if($interest ==0) { ?> class="icon-bg-blue" onclick="sent_intrest(<?php echo $row['guid'];?>)" style="cursor: default !important;"  title="Send Interest?"<?php } else { ?> class="icon-bg-blue active" title="Interest Sent" <?php } ?> id="intrest_<?php echo $row['guid'];?>">
+                    <span   <?php if($interest ==0) { ?> class="icon-bg-blue" onclick="sent_intrest(<?php echo $row['id'];?>)" style="cursor: default !important;"  title="Send Interest?"<?php } else { ?> class="icon-bg-blue active" title="Interest Sent" <?php } ?> id="intrest_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-heart" style="color:#fff"></i>
@@ -249,7 +230,7 @@ if(isset($_SESSION['Login_Session']))
                         </a>
                     </span>
 
-                    <span <?php if($sms ==0) { ?> class="icon-bg-blue" title="View Number/Send SMS" onclick="view_mobile(<?php echo $row['guid'];?>)" <?php } else {?> class="icon-bg-blue active" title="Number Viewed" style="cursor: default !important;" <?php } ?> id="mobile_<?php echo $row['guid'];?>">
+                    <span <?php if($sms ==0) { ?> class="icon-bg-blue" title="View Number/Send SMS" onclick="view_mobile(<?php echo $row['id'];?>)" <?php } else {?> class="icon-bg-blue active" title="Number Viewed" style="cursor: default !important;" <?php } ?> id="mobile_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i>
@@ -257,7 +238,7 @@ if(isset($_SESSION['Login_Session']))
                         </a>
                     </span>
 
-                    <span <?php if($shortlist ==0) { ?> class="icon-bg-blue posrelative" title="Shortlist" onclick="shortlist(<?php echo $row['guid'];?>)" <?php } else { ?> class="icon-bg-blue posrelative active" title="Shortlisted" style="cursor: default !important;" <?php } ?> id="shortlist_<?php echo $row['guid'];?>">
+                    <span <?php if($shortlist ==0) { ?> class="icon-bg-blue posrelative" title="Shortlist" onclick="shortlist(<?php echo $row['id'];?>)" <?php } else { ?> class="icon-bg-blue posrelative active" title="Shortlisted" style="cursor: default !important;" <?php } ?> id="shortlist_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-user" style="color:#fff"></i>
@@ -271,10 +252,10 @@ if(isset($_SESSION['Login_Session']))
                   <div class="src-user-data clearfix">
                     <div class="userdata-left fleft">
                       <ul>
-                        <li> <span class="input-field">Age, Height </span> <span class="input-data"><?php echo $row['txtAge'];?> yrs, <?php echo $row['txtHeight'];?></span> </li>
-                        <li><span class="input-field">Denomination</span><span class="input-data"><?php echo ucfirst($dnation);?></span></li>
-                        <li><span class="input-field">Education</span><span class="input-data"><?php echo $row['txtEducation'];?></span></li>
-                        <li><span class="input-field">Occupation</span><span class="input-data"><?php echo $accupation;?></span></li>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data"><?php echo $row['age'];?> yrs, <?php echo $row['height'];?></span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data"><?php echo ucfirst($row['denomination']);?></span></li>
+                        <li><span class="input-field">Education</span><span class="input-data"><?php echo $row['education'];?></span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data"><?php echo $row['occupation'];?></span></li>
                       </ul>
                     </div>
                   </div>

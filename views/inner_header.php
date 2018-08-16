@@ -7,9 +7,9 @@ require "../lib/path.php";
 require "../lib/Bootstrap.php";
 
 $session_flag = 0;
-if(isset($_SESSION['Login_Session']))
+if(isset($_SESSION['id']))
 {
-  $user_info = $db->query("SELECT user_id,name FROM register WHERE guid=".$_SESSION["Login_Session"])->fetch();
+  $user_info = $db->query("SELECT `profile_id`,`name` FROM profiles WHERE id=".$_SESSION["id"])->fetch();
   $session_flag = 1;
 }
 
@@ -92,13 +92,13 @@ if(isset($_SESSION['Login_Session']))
             <li><a href='javascript:;' onclick="session_check('search.php')">SEARCH</a></li>
             <li><a href='javascript:;' onclick="session_check('upgrade.php')">UPGRADE</a></li>
             <li><a href='javascript:;' onclick="session_check('help.php')">HELP</a></li>
-            <?php if(isset($_SESSION['Login_Session']))
+            <?php if(isset($_SESSION['id']))
             {?>
                 <li><a href="#"><i class="fa fa-bell"></i></a></li>
                 <div class="btn-group" style="margin-top:18px"> <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#"> <i class="fa fa-user"></i> <span class="icon-cog icon-white"></span><span class="caret"></span> </a>
                   <ul class="dropdown-menu">
                     
-                        <h6 style="padding:5px;"><b><span style="color:#ce191f"><?php echo ucfirst($user_info['name']);?></span></b> (ID : <?php echo $user_info['user_id'];?>)</h6>
+                        <h6 style="padding:5px;"><b><span style="color:#ce191f"><?php echo ucfirst($user_info['name']);?></span></b> (ID : <?php echo $user_info['profile_id'];?>)</h6>
                 
                     <li><a href="#"><i class="fa fa-edit"></i> Edit Profile</a></li>
                     <li><a href="#"><i class="fa fa-cog"></i> Change Password</a></li>

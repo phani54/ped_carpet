@@ -64,10 +64,10 @@ input[type=checkbox], input[type=radio] {
 <body>
 <?php 
 
-    $get_shortlist_qry = $db->query("SELECT * FROM profile_interests WHERE shorlist=1 AND viewer_id=".$_SESSION['Login_Session']);
+    $get_shortlist_qry = $db->query("SELECT * FROM profile_interests WHERE shorlist=1 AND viewer_id=".$_SESSION['id']);
     $shortlist_count = $get_shortlist_qry->rowCount();
 
-    $get_interest_qry = $db->query("SELECT * FROM profile_interests WHERE interest=1 AND viewer_id=".$_SESSION['Login_Session']);
+    $get_interest_qry = $db->query("SELECT * FROM profile_interests WHERE interest=1 AND viewer_id=".$_SESSION['id']);
     $interest_count = $get_interest_qry->rowCount();
 ?>
 <section class="main-wrapper container innerpage-content"  style="padding:120px 0px;">
@@ -122,44 +122,25 @@ input[type=checkbox], input[type=radio] {
                 {
                     if(isset($_GET['similer']) && $_GET['similer']!='' && $_GET['similer']!=0)
                     {
-                        $get_profile_info = $db->query("SELECT * FROM `register` WHERE guid=".$_GET['similer']);
+                        $get_profile_info = $db->query("SELECT * FROM `profiles` WHERE id=".$_GET['similer']);
                         if($get_profile_info->rowCount() > 0)
                         {
                             $profile_info = $get_profile_info->fetch();
-                            $condition = " AND (txtCity LIKE '%".$profile_info['txtCity']."%' OR txtCaddress LIKE '%".$profile_info['txtCaddress']."%' OR txtAge='".$profile_info['txtAge']."' OR txtHeight LIKE '%".$profile_info['txtHeight']."%' OR dnation='".$profile_info['dnation']."' OR txtEducation='".$profile_info['txtEducation']."' OR txtOccupation='".$profile_info['txtOccupation']."')";
+                            $condition = " AND (city LIKE '%".$profile_info['city']."%' OR address LIKE '%".$profile_info['address']."%' OR age='".$profile_info['age']."' OR height LIKE '%".$profile_info['height']."%' OR denomination='".$profile_info['denomination']."' OR education='".$profile_info['education']."' OR occupation='".$profile_info['occupation']."')";
                             $other_params = 'similer='.$_GET['similer'].'&';
                         }
                     }
                 }
-                $get_rows = $db->query("SELECT * FROM `register` WHERE gender='".$_SESSION['show_gender']."' AND guid!=".$_SESSION['Login_Session']." $condition");
+                $get_rows = $db->query("SELECT * FROM `profiles` WHERE gender='".$_SESSION['show_gender']."' AND id!=".$_SESSION['id']." $condition");
                 $paging = make_pages($page,$limit,$get_rows->rowCount(),'dashboard.php',$other_params);
                 $page = $limit*($page-1);
-                $rth = $db->query("SELECT * FROM `register` WHERE gender='".$_SESSION['show_gender']."' AND guid!=".$_SESSION['Login_Session']." $condition ORDER BY `dateandtime` DESC limit $page,$limit");
+                $rth = $db->query("SELECT * FROM `profiles` WHERE gender='".$_SESSION['show_gender']."' AND id!=".$_SESSION['id']." $condition ORDER BY `created_on` DESC limit $page,$limit");
                 while($row = $rth->fetch())
                 {
-                    if($row['txtOccupation']!=0)
-                    {
-                        $accupation_qry = $db->query("SELECT `name` FROM `occupations` WHERE guid=".$row['txtOccupation'])->fetch();
-                        $accupation =  $accupation_qry['name'];
-                    }
-                    else
-                    {
-                        $accupation = 'N/A';
-                    }
-                    if($row['dnation']!=0)
-                    {
-                        $dnation_qry = $db->query("SELECT `name` FROM `denominations` WHERE guid=".$row['dnation'])->fetch();
-                        $dnation =  $dnation_qry['name'];
-                    }
-                    else
-                    {
-                        $dnation = 'N/A';
-                    }
-
                     $interest = 0;
                     $sms = 0;
                     $shortlist = 0;
-                    $interest_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['Login_Session']."' AND profile_id=".$row['guid']);
+                    $interest_qry = $db->query("SELECT * FROM profile_interests WHERE viewer_id='".$_SESSION['id']."' AND profile_id=".$row['id']);
                     if($interest_qry->rowCount() > 0)
                     {
                         $res = $interest_qry->fetch();
@@ -173,20 +154,20 @@ input[type=checkbox], input[type=radio] {
             <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
               <div class="padt10 padl10 padb10 padr5">
                 <div>
-                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt"><?php echo $row['user_id'];?></a></div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt"><?php echo $row['profile_id'];?></a></div>
                   <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
-                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> <?php echo $row['profilefor'];?></div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> <?php echo $row['profile_for'];?></div>
                   <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><?php 
                     $link = preg_replace("~(\?|&)similer=[^&]*~","",$link); 
                     if(strpos($link,'?') !== false)//exists
                     {
                         $link = preg_replace("~(\?|&)page=[^&]*~","",$link); 
                         $link = str_replace(".php&", ".php", $link);
-                        $link = $link."?page=1&similer=".$row['guid'];
+                        $link = $link."?page=1&similer=".$row['id'];
                     }
                     else
                     {
-                        $link = $link."?page=1&similer=".$row['guid'];
+                        $link = $link."?page=1&similer=".$row['id'];
                     }
                     ?><a href='<?php echo $link; ?>' class="clr6 srch-line">View Similar Profiles</a></span> </div>
                   <div class="clear"></div>
@@ -195,7 +176,7 @@ input[type=checkbox], input[type=radio] {
                   <div class="ph-imgbg bgclr5 txt-center">
                     <div class="pad10"><a href="">
                       <div class="posrelative">
-                        <div><img width="150" height="150" border="0" src="<?php echo URL;?>adminupload/<?php echo $row['txtImage1'];?>"></div>
+                        <div><img width="150" height="150" border="0" src="<?php echo URL;?>adminupload/<?php echo $row['image'];?>"></div>
                       </div>
                       </a>
                      
@@ -205,11 +186,11 @@ input[type=checkbox], input[type=radio] {
                 <div class="fleft padl10 col-sm-9" >
                   <div class="fleft mediumtxt" >
                     <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" ><?php echo ucwords($row['name']) ;?></a></div>
-                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> <?php echo ucfirst($row['txtCity']);?>, <?php echo substr(ucfirst($row['txtCaddress']),0,11);?>, In..</div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> <?php echo ucfirst($row['city']);?>, <?php echo substr(ucfirst($row['address']),0,11);?>, In..</div>
                   </div>
 				  
                 <div class="fleft padt20" style="float: right;"> 
-                    <span   <?php if($interest ==0) { ?> class="icon-bg-blue" onclick="sent_intrest(<?php echo $row['guid'];?>)" style="cursor: default !important;"  title="Send Interest?"<?php } else { ?> class="icon-bg-blue active" title="Interest Sent" <?php } ?> id="intrest_<?php echo $row['guid'];?>">
+                    <span   <?php if($interest ==0) { ?> class="icon-bg-blue" onclick="sent_intrest(<?php echo $row['id'];?>)" style="cursor: default !important;"  title="Send Interest?"<?php } else { ?> class="icon-bg-blue active" title="Interest Sent" <?php } ?> id="intrest_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-heart" style="color:#fff"></i>
@@ -217,7 +198,7 @@ input[type=checkbox], input[type=radio] {
                         </a>
                     </span>
 
-                    <span <?php if($sms ==0) { ?> class="icon-bg-blue" title="View Number/Send SMS" onclick="view_mobile(<?php echo $row['guid'];?>)" <?php } else {?> class="icon-bg-blue active" title="Number Viewed" style="cursor: default !important;" <?php } ?> id="mobile_<?php echo $row['guid'];?>">
+                    <span <?php if($sms ==0) { ?> class="icon-bg-blue" title="View Number/Send SMS" onclick="view_mobile(<?php echo $row['id'];?>)" <?php } else {?> class="icon-bg-blue active" title="Number Viewed" style="cursor: default !important;" <?php } ?> id="mobile_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i>
@@ -225,7 +206,7 @@ input[type=checkbox], input[type=radio] {
                         </a>
                     </span>
 
-                    <span <?php if($shortlist ==0) { ?> class="icon-bg-blue posrelative" title="Shortlist" onclick="shortlist(<?php echo $row['guid'];?>)" <?php } else { ?> class="icon-bg-blue posrelative active" title="Shortlisted" style="cursor: default !important;" <?php } ?> id="shortlist_<?php echo $row['guid'];?>">
+                    <span <?php if($shortlist ==0) { ?> class="icon-bg-blue posrelative" title="Shortlist" onclick="shortlist(<?php echo $row['id'];?>)" <?php } else { ?> class="icon-bg-blue posrelative active" title="Shortlisted" style="cursor: default !important;" <?php } ?> id="shortlist_<?php echo $row['id'];?>">
                         <a href='javascript:;' onclick='return false;'>
                             <span class="msgIcon-on">
                                 <i class="fa fa-user" style="color:#fff"></i>
@@ -239,10 +220,10 @@ input[type=checkbox], input[type=radio] {
                   <div class="src-user-data clearfix">
                     <div class="userdata-left fleft">
                       <ul>
-                        <li> <span class="input-field">Age, Height </span> <span class="input-data"><?php echo $row['txtAge'];?> yrs, <?php echo $row['txtHeight'];?></span> </li>
-                        <li><span class="input-field">Denomination</span><span class="input-data"><?php echo ucfirst($dnation);?></span></li>
-                        <li><span class="input-field">Education</span><span class="input-data"><?php echo $row['txtEducation'];?></span></li>
-                        <li><span class="input-field">Occupation</span><span class="input-data"><?php echo $accupation;?></span></li>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data"><?php echo $row['age'];?> yrs, <?php echo $row['height'];?></span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data"><?php echo ucfirst($row['denomination']);?></span></li>
+                        <li><span class="input-field">Education</span><span class="input-data"><?php echo $row['education'];?></span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data"><?php echo $row['occupation'];?></span></li>
                       </ul>
                     </div>
                   </div>

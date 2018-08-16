@@ -43,23 +43,25 @@
 <body>
 <nav id="sidebar">
     <div id="dismiss" class="dismiss"> <i class="fa fa-arrow-right"></i> </div>
-	<?php if(isset($_SESSION['Rcm_auth_session_login']) && $_SESSION['Rcm_auth_session_login'] === true){ 
-	$heth = $db->query("SELECT `name`,`image_1` FROM `register` WHERE `user_id`='".$_SESSION['Rcm_auth_session_userid']."'");
+	<?php  
+        if(isset($_SESSION['id']) && $_SESSION['id'] !=0){ 
+
+	$heth = $db->query("SELECT `name`,`image`,`gender` FROM `profiles` WHERE `id`='".$_SESSION['id']."'");
 	$h_row = $heth->fetch();
-	if($h_row['gender'] == 'male'){
+	if($h_row['gender'] == 'Male'){
 		$gender_photo = 'male_large.jpg';
-	} else if($h_row['gender'] == 'female'){
+	} else if($h_row['gender'] == 'Female'){
 		$gender_photo = 'female_large.jpg';
-	}
+    }
+
 	?>
     <ul class="list-unstyled CTAs">
-		<ul class="list-unstyled CTAs" align="center">
-			<li><img src="<?php if(!empty($h_row['image_1']) && file_exists('profile_images/'.$h_row['image_1'])) echo IURL.'profile_images/'.$h_row['image_1']; else echo IURL.'assets/images/'.$gender_photo; ?>" alt="" class="img-responsive center-block img-border"></li>
-			<li style="font-weight:bold; text-transform:uppercase;"><?php echo $h_row['name']?></li>
-		 
-        <li><a href="<?php echo URL ?>profile/" style="color:white;">My Profile</a></li>
-        <li><a href="<?php echo URL?>logout/" style="color:white;">Logout</a></li>
-        </ul>
+		<li>
+            <img src="<?php if(!empty($h_row['image']) && file_exists('../adminupload/'.$h_row['image'])) { echo URL.'adminupload/'.$h_row['image']; }else {echo URL.'assets/images/'.$gender_photo;} ?>" alt="" class="img-responsive center-block img-border">
+        </li>
+        <li style="font-weight:bold; text-transform:uppercase;"><?php echo $h_row['name'];?></li>
+        <li><a href="<?php echo URL_VIEW;?>profile.php" style="color:white;">My Profile</a></li>
+        <li><a href="<?php echo URL_VIEW;?>logout.php" style="color:white;">Logout</a></li>
     </ul>
 	<?php } else {?>
 	<ul class="list-unstyled CTAs">
@@ -106,7 +108,7 @@ padding: 10px;
                 <a class="sidebar-icon btn btn-link" id="sidebarCollapse"> <i class="fa fa-bars"></i> </a>
                 <div class="header-btns">
 					<?php 
-						if(!isset($_SESSION['Rcm_auth_session_login'])){ ?>
+						if(!isset($_SESSION['id'])){ ?>
 						<a href="<?php echo URL_VIEW;?>register.php">
 							<button type="submit" class="btn btn-primary " id="HP_Banner_Register_CTA"><i class="fa fa-edit"></i>  Register Free!</button>
 						</a>
