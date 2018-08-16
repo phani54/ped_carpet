@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2018 at 10:10 AM
+-- Generation Time: Aug 16, 2018 at 02:53 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -48944,6 +48944,7 @@ CREATE TABLE `profiles` (
   `profile_for` varchar(50) NOT NULL,
   `name` varchar(150) NOT NULL,
   `gender` varchar(10) NOT NULL,
+  `image` varchar(250) NOT NULL,
   `birth_date` int(11) NOT NULL,
   `birth_month` int(11) NOT NULL,
   `birth_year` int(11) NOT NULL,
