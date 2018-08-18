@@ -105,8 +105,10 @@ if(isset($_POST) && $_POST['action']== 'shortlist')
 
 if(isset($_POST) && $_POST['action']== 'register_step1')
 {
+	$dob = date('Y-m-d', strtotime($_POST['dob']));
 	$digits = 6;
 	$otp = rand(pow(10, $digits-1), pow(10, $digits)-1);
+	$profile_id ="RCM".rand(pow(10, $digits-1), pow(10, $digits)-1);
 	$chk_qry = $db->query("SELECT `id`,`otp_flag`,`gender` FROM `profiles` WHERE `mobile`='".$_POST['mobile']."'");
 	if($chk_qry->rowCount() > 0)
 	{
@@ -122,21 +124,41 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 		}
 		else
 		{
-			$update_qry = $db->query("UPDATE profiles SET profile_for='".$_POST['p_created_by']."',mobile='".$_POST['mobile']."',name='".$_POST['name']."',email='".$_POST['email']."',password='".$_POST['pwd']."',otp='".$otp."' WHERE mobile='".$_POST['mobile']."'");
+			$update_qry = $db->query("UPDATE profiles SET profile_for='".$_POST['profile_for']."',mobile='".$_POST['mobile']."',name='".$_POST['name']."',password='".$_POST['pwd']."',otp='".$otp."',security_key='".md5($_POST['pwd'])."',marital_status='".$_POST['m_status']."',religion='".$_POST['religion']."',denomination='".$_POST['denomination']."',sub_caste='".$_POST['caste']."',mother_tongue='".$_POST['mother_tongue']."',country='".$_POST['country']."',country_code='".$_POST['country_code']."',dob='".$dob."' WHERE mobile='".$_POST['mobile']."'");
 			if($update_qry)
 			{
-				//Write sent sms code here
-				echo json_encode(array('status'=>'error','msg'=>'open_otp_model','pro_mobile'=>$_POST['mobile']));
+				//Sent sms code here
+				$msg = 'Redcarpet OTP: '.$otp;
+				$url = "http://smslogin.mobi/spanelv2/api.php?username=redcarpetevents&password=2klikes&to=".$_POST['mobile']."&from=RCEMMS&message=".urlencode($msg); 
+				$ret = file($url);
+				if($ret[0])
+				{
+					echo json_encode(array('status'=>'error','msg'=>'open_otp_model','pro_mobile'=>$_POST['mobile']));
+				}
+				else
+				{
+					echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
+				}
 			}
 		}
 	}
 	else
 	{
-		$insert_qry = $db->query("INSERT INTO profiles(`profile_for`,`mobile`,`name`,`email`,`password`,`otp`) VALUES('".$_POST['p_created_by']."','".$_POST['mobile']."','".$_POST['name']."','".$_POST['email']."','".$_POST['pwd']."','".$otp."')");
+		$insert_qry = $db->query("INSERT INTO profiles(`profile_for`,`mobile`,`name`,`password`,`otp`,`profile_id`,`marital_status`,`religion`,`denomination`,`sub_caste`,`mother_tongue`,`country`,`country_code`,`dob`,`security_key`) VALUES('".$_POST['profile_for']."','".$_POST['mobile']."','".$_POST['name']."','".$_POST['pwd']."','".$otp."','".$profile_id."','".$_POST['m_status']."','".$_POST['religion']."','".$_POST['denomination']."','".$_POST['caste']."','".$_POST['mother_tongue']."','".$_POST['country']."','".$_POST['country_code']."','".$dob."','".md5($_POST['pwd'])."')");
 		if($insert_qry)
 		{
-			//Write sent sms code here
-			echo json_encode(array('status'=>'success','pro_mobile'=>$_POST['mobile'])); 
+			//Sent sms code here
+			$msg = 'Redcarpet OTP: '.$otp;
+			$url = "http://smslogin.mobi/spanelv2/api.php?username=redcarpetevents&password=2klikes&to=".$_POST['mobile']."&from=RCEMMS&message=".urlencode($msg); 
+			$ret = file($url);
+			if($ret[0])
+			{
+				echo json_encode(array('status'=>'success','pro_mobile'=>$_POST['mobile'])); 
+			}
+			else
+			{
+				echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
+			}
 		}
 		else
 		{

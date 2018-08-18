@@ -14,23 +14,27 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,300italic,300' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <link rel="icon" href="<?php echo URL;?>assets/images/icons/favicon_medium.png" type="image/png">
-    <link rel="stylesheet" href="<?php echo URL;?>assets/css/bootstrap/css/bootstrap.min7b30.css" media="screen" type="text/css" />
-    <link rel="stylesheet" href="<?php echo URL;?>assets/css/style2dac.css?v=21" type="text/css" />
-    <link rel="stylesheet" href="<?php echo URL;?>assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo URL;?>assets/css/jquery.mCustomScrollbar.min.css" type="text/css" />
+    <link rel="icon" href="<?php echo URL ?>assets/images/icons/favicon_medium.png" type="image/png">
+    <link rel="stylesheet" href="<?php echo URL ?>assets/css/bootstrap/css/bootstrap.min7b30.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="<?php echo URL ?>assets/css/style2dac.css?v=21" type="text/css" />
+    <link rel="stylesheet" href="<?php echo URL ?>assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo URL ?>assets/css/jquery.mCustomScrollbar.min.css" type="text/css" />
     <script src="<?php echo URL ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo URL ?>assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- <script src="<?php echo URL ?>assets/app/HomeApp7893.js"></script> -->
+    <script src="<?php echo URL ?>assets/js/angular.min.js"></script>
+    <script src="<?php echo URL ?>assets/js/angular-sanitize.j"></script>
+    <script src="<?php echo URL ?>assets/app/HomeApp7893.js"></script>
     <script src="<?php echo URL ?>assets/js/pagescripts.js"></script>
 
     <script type="text/javascript" src="<?php echo URL ?>assets/js/bootstrap/bootstrap-select.min.js"></script> 
     <script type="text/javascript" src="<?php echo URL ?>assets/js/main7893.js?v=24" ></script> 
-    <!--<script type="text/javascript" src="https://www.lovevivah.com/assets/js/slick/slick.js"></script> --> 
+    <script type="text/javascript" src="https://www.lovevivah.com/assets/js/slick/slick.js"></script>  
     <script type="text/javascript" src="<?php echo URL ?>assets/js/select2/select2.min.js" ></script> 
     <script type="text/javascript" src="<?php echo URL ?>assets/js/commonfc7a.js?v=29"></script> 
+
+
     
     <style>
         .custom-select-trigger {

@@ -155,6 +155,10 @@
 </div>
 
 <script type="text/javascript">
+    $(document).reday(function(){
+        $('#err_msg_otp').removeClass('lv-alert alert-danger');
+        $('#err_msg_otp').text("");
+    })
     $('#loginfrm').validate({
         rules:{
             password:{

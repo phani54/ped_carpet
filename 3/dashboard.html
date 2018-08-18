@@ -1,0 +1,711 @@
+<!doctype html>
+<html class="no-js" prefix="ng: https://angularjs.org">
+<head>
+<meta charset="UTF-8">
+<meta name="fragment" content="!" >
+<title>Redcarpet Matrimony</title>
+<meta name="description" content="Red Carpet Matrimony" />
+<meta name="keywords" content="Red Carpet Matrimony" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Roboto:300,400,400i,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+<link rel="stylesheet" href="assets/fontawesome/css/font-awesome.min.css" media="screen" type="text/css" />
+<link rel="icon" href="assets/images/icons/favicon_medium.png" type="image/png" >
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap.min7b30.css?v=4" media="screen" type="text/css" />
+<link rel="stylesheet" href="assets/css/bootstrap/css/bootstrap-select.min7b30.css?v=4" media="screen" type="text/css" />
+<link rel="stylesheet" href="assets/css/overridec2e2.css?v=41" media="screen" type="text/css" />
+<link rel="stylesheet" href="assets/css/owl-carousel/owl.carousel.min8d0c.css?v=26" type="text/css" />
+<link rel="stylesheet" href="assets/css/owl-carousel/owl.theme.default.min8d0c.css?v=26" type="text/css" />
+<link rel="stylesheet" href="assets/css/animate2.min.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="assets/css/custom7efa.css?v=45" media="screen" type="text/css" />
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular-sanitize.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+input[type=checkbox], input[type=radio] {
+	display: inherit !important;
+}
+.input-group {
+	margin-bottom: 15px;
+}
+.countbox, .acclist li span.count {
+	font: normal 11px Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background: #398439;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	margin-top: 10px;
+	padding: 2px 3px;
+}
+#inbox {
+	height: auto;
+	background-color: #fff;
+}
+#inbox ol, .rlist ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#inbox ol li, .rlist ol li {
+	display: block;
+	border-bottom: 1px dotted #b6b4b4;
+	/* background: url(//imgs.communitymatrimony.com/cbsimages/arrow-gry.png) no-repeat 9px 12px; */
+	position: relative;
+	padding: 12px 3px 12px 15px;
+}
+#inbox ol li a, .rlist ol li a {
+	font: normal 12px Arial, Helvetica, sans-serif;
+	color: #999;
+}
+.fa-fw {
+	width: 1.28571429em;
+	text-align: center;
+}
+#inbox span.countbox, .rlist span.countbox {
+	margin-top: 0;
+	min-width: 15px;
+	text-align: center;
+	margin-right: 10px;
+}
+.fright {
+	float: right;
+}
+</style>
+</head>
+
+<body>
+
+<!--Desktop Navbar -->
+<nav class="navbar navbar-default navbar-fixed-top lv-nav" ng-controller="headerController">
+  <div class="container-fluid top-nav">
+    <div class="container"> <span class="top-trust pull-left">Call +91-124-265 8600 (India)</span> <span class="top-trust pull-right">support@redcarpetmatrimony.com</span> </div>
+  </div>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed navbar-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a href="index.php" class="navbar-brand visible-xs"> <img style="max-width:150px; margin-top: -7px;" src="assets/images/logo2.png"> </a> </div>
+    <div class="container"> <a href="index.php" class="navbar-brand hidden-xs"> <img style="max-width:150px; margin-top: -7px;" src="assets/images/logo2.png"> </a>
+      <div class="mainmenu-lv">
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="dashboard.html">MY HOME</a></li>
+            <li><a href="profile.html">MY PROFILE</a></li>
+            <li><a href="#">INBOX</a></li>
+            <li><a href="#">SEARCH</a></li>
+            <li><a href="#">UPGRADE</a></li>
+            <li><a href="#">HELP</a></li>
+            <li><a href="#"><i class="fa fa-bell"></i></a></li>
+            <div class="btn-group" style="margin-top:18px"> <a class="btn dropdown-toggle btn-success" data-toggle="dropdown" href="#"> <i class="fa fa-user"></i> <span class="icon-cog icon-white"></span><span class="caret"></span> </a>
+              <ul class="dropdown-menu">
+                <h6 style="padding:5px;"><b><span style="color:#ce191f">Harish Nammi</span></b> (ID : RCM1456)</h6>
+                <li><a href="#"><i class="fa fa-edit"></i> Edit Profile</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Change Password</a></li>
+                <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<section class="main-wrapper container innerpage-content"  style="padding:120px 0px;">
+  <article>
+    <div class="container">
+      <div class="col-sm-3">
+        <div class="tabbable-panel">
+          <div class="tabbable-line">
+            <h3 style="margin-top: 0px;">Messages</h3>
+            <ul class="nav nav-tabs ">
+              <li class="active"> <a href="#tab_default_1" data-toggle="tab"> Inbox <span class="countbox">0</span></a> </li>
+              <li> <a href="#tab_default_2" data-toggle="tab"> Sent <span class="countbox">0</span></a> </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_default_1">
+                <div id="inbox" style="display: block;">
+                  <ol class="clearfix">
+                    <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Pending<span class='countbox fright'>0</span></a></li>
+                    <li class='last'><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Accepted <span class='countbox fright'>0</span></a></li>
+                  </ol>
+                  <div id="msgrecpart" class="rlist" style="display:block;">
+                    <ol class="clearfix">
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Replied <span class='countbox fright'>0</span></a></li>
+                      <li><a  href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Need time / info <span class='countbox fright'>0</span></a></li>
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Declined <span class='countbox fright'>0</span></a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab_default_2">
+                <div id="inbox" style="display: block;">
+                  <ol class="clearfix">
+                    <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Pending<span class='countbox fright'>0</span></a></li>
+                    <li class='last'><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Accepted <span class='countbox fright'>0</span></a></li>
+                  </ol>
+                  <div id="msgrecpart" class="rlist" style="display:block;">
+                    <ol class="clearfix">
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Replied <span class='countbox fright'>0</span></a></li>
+                      <li><a  href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Need time / info <span class='countbox fright'>0</span></a></li>
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Declined <span class='countbox fright'>0</span></a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Tab-content --> 
+          </div>
+          <!-- End Tabbed-Line --> 
+        </div>
+        <br>
+        <div align="center"> <a href="#"><img src="images/my-home-page-banners1.gif" class="img-responsive"/></a> </div>
+        <div class="tabbable-panel">
+          <h3>Your Activity Board</h3>
+          <div class="tabbable-line">
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_default_1">
+                <div id="inbox" style="display: block;">
+                  <ol class="clearfix">
+                    <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>SMS sent<span class='countbox fright'>0</span></a></li>
+                    <li class='last'><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>SMS received <span class='countbox fright'>0</span></a></li>
+                  </ol>
+                  <div id="msgrecpart" class="rlist" style="display:block;">
+                    <ol class="clearfix">
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Members you have shortlisted <span class='countbox fright'>0</span></a></li>
+                      <li><a  href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Members you have blocked <span class='countbox fright'>0</span></a></li>
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Members you have ignored <span class='countbox fright'>0</span></a></li>
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Mobile no(s) viewed by you <span class='countbox fright'>0</span></a></li>
+                      <li><a href='javascript:;' onclick='return false;' style='cursor:auto;text-decoration:none'>Daily MatchWatch Archive</a></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Tab-content --> 
+          </div>
+          <!-- End Tabbed-Line --> 
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div id="ResultArea" class="Tabbox tabContainer active" style="padding-top: 0;">
+          <div class="srch-profile-contents">
+            <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
+              <div class="padt10 padl10 padb10 padr5">
+                <div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt">CHR2007924</a></div>
+                  <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> Daughter</div>
+                  <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><a href="#" class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="fleft padt10 col-sm-3">
+                  <div class="ph-imgbg bgclr5 txt-center">
+                    <div class="pad10"><a href="">
+                      <div class="posrelative">
+                        <div><img width="150" height="150" border="0" src="images/profile.jpg"></div>
+                      </div>
+                      </a>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="fleft padl10 col-sm-9" >
+                  <div class="fleft mediumtxt" >
+                    <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" >K Pavan Kumari</a></div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> Anantapur, Andhra Pradesh, In..</div>
+                  </div>
+				  
+                  <div class="fleft padt20"> <span class="icon-bg-blue"><a href="#"><span class="msgIcon-on"><i class="fa fa-heart" style="color:#fff"></i></span></a></span><span class="icon-bg-blue"><a  href="#" ><span class="msgIcon-on"><i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i></span></a></span><span class="icon-bg-blue posrelative"><a  href=""><span class="msgIcon-on"><i class="fa fa-user" style="color:#fff"></i></span></a>
+                   
+                    </span><span class="icon-bg"><span class="activity-icon"><span class="clr7"><i class="fa fa-clock-o"></i> Last Online </span><br>
+                    <a class="clr5" style="cursor:auto;">2 hrs ago</a></span></span> </div>
+                  <br clear="all">
+                  <div class="src-user-data clearfix">
+                    <div class="userdata-left fleft">
+                      <ul>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data">28 yrs, 5 ft 3 in / 160 cm</span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data">Church of Christ</span></li>
+                        <li><span class="input-field">Education</span><span class="input-data">B.Sc. Nursing</span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data">Nurse</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br clear="all">
+                  <div class="dot-step padb3"><!--  --></div>
+                  <div class="src-user-data">
+                    <div class="userdata-left">
+                      <ul>
+                        <li><a href="" class="clr6 srch-line"> View Full Profile</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <br clear="all">
+              </div>
+             
+            </div>
+          </div>
+         <div class="srch-profile-contents">
+            <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
+              <div class="padt10 padl10 padb10 padr5">
+                <div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt">CHR2007924</a></div>
+                  <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> Daughter</div>
+                  <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><a href="#" class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="fleft padt10 col-sm-3">
+                  <div class="ph-imgbg bgclr5 txt-center">
+                    <div class="pad10"><a href="">
+                      <div class="posrelative">
+                        <div><img width="150" height="150" border="0" src="images/profile1.jpg"></div>
+                      </div>
+                      </a>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="fleft padl10 col-sm-9" >
+                  <div class="fleft mediumtxt" >
+                    <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" >K Pavan Kumari</a></div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> Anantapur, Andhra Pradesh, In..</div>
+                  </div>
+				  
+                  <div class="fleft padt20"> <span class="icon-bg-blue"><a href="#"><span class="msgIcon-on"><i class="fa fa-heart" style="color:#fff"></i></span></a></span><span class="icon-bg-blue"><a  href="#" ><span class="msgIcon-on"><i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i></span></a></span><span class="icon-bg-blue posrelative"><a  href=""><span class="msgIcon-on"><i class="fa fa-user" style="color:#fff"></i></span></a>
+                   
+                    </span><span class="icon-bg"><span class="activity-icon"><span class="clr7"><i class="fa fa-clock-o"></i> Last Online </span><br>
+                    <a class="clr5" style="cursor:auto;">2 hrs ago</a></span></span> </div>
+                  <br clear="all">
+                  <div class="src-user-data clearfix">
+                    <div class="userdata-left fleft">
+                      <ul>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data">28 yrs, 5 ft 3 in / 160 cm</span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data">Church of Christ</span></li>
+                        <li><span class="input-field">Education</span><span class="input-data">B.Sc. Nursing</span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data">Nurse</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br clear="all">
+                  <div class="dot-step padb3"><!--  --></div>
+                  <div class="src-user-data">
+                    <div class="userdata-left">
+                      <ul>
+                        <li><a href="" class="clr6 srch-line"> View Full Profile</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <br clear="all">
+              </div>
+             
+            </div>
+          </div>
+          <div class="srch-profile-contents">
+            <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
+              <div class="padt10 padl10 padb10 padr5">
+                <div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt">CHR2007924</a></div>
+                  <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> Daughter</div>
+                  <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><a href="#" class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="fleft padt10 col-sm-3">
+                  <div class="ph-imgbg bgclr5 txt-center">
+                    <div class="pad10"><a href="">
+                      <div class="posrelative">
+                        <div><img width="150" height="150" border="0" src="images/profile.jpg"></div>
+                      </div>
+                      </a>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="fleft padl10 col-sm-9" >
+                  <div class="fleft mediumtxt" >
+                    <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" >K Pavan Kumari</a></div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> Anantapur, Andhra Pradesh, In..</div>
+                  </div>
+				  
+                  <div class="fleft padt20"> <span class="icon-bg-blue"><a href="#"><span class="msgIcon-on"><i class="fa fa-heart" style="color:#fff"></i></span></a></span><span class="icon-bg-blue"><a  href="#" ><span class="msgIcon-on"><i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i></span></a></span><span class="icon-bg-blue posrelative"><a  href=""><span class="msgIcon-on"><i class="fa fa-user" style="color:#fff"></i></span></a>
+                   
+                    </span><span class="icon-bg"><span class="activity-icon"><span class="clr7"><i class="fa fa-clock-o"></i> Last Online </span><br>
+                    <a class="clr5" style="cursor:auto;">2 hrs ago</a></span></span> </div>
+                  <br clear="all">
+                  <div class="src-user-data clearfix">
+                    <div class="userdata-left fleft">
+                      <ul>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data">28 yrs, 5 ft 3 in / 160 cm</span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data">Church of Christ</span></li>
+                        <li><span class="input-field">Education</span><span class="input-data">B.Sc. Nursing</span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data">Nurse</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br clear="all">
+                  <div class="dot-step padb3"><!--  --></div>
+                  <div class="src-user-data">
+                    <div class="userdata-left">
+                      <ul>
+                        <li><a href="" class="clr6 srch-line"> View Full Profile</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <br clear="all">
+              </div>
+             
+            </div>
+          </div>
+          <div class="srch-profile-contents">
+            <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
+              <div class="padt10 padl10 padb10 padr5">
+                <div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt">CHR2007924</a></div>
+                  <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> Daughter</div>
+                  <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><a href="#" class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="fleft padt10 col-sm-3">
+                  <div class="ph-imgbg bgclr5 txt-center">
+                    <div class="pad10"><a href="">
+                      <div class="posrelative">
+                        <div><img width="150" height="150" border="0" src="images/profile1.jpg"></div>
+                      </div>
+                      </a>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="fleft padl10 col-sm-9" >
+                  <div class="fleft mediumtxt" >
+                    <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" >K Pavan Kumari</a></div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> Anantapur, Andhra Pradesh, In..</div>
+                  </div>
+				  
+                  <div class="fleft padt20"> <span class="icon-bg-blue"><a href="#"><span class="msgIcon-on"><i class="fa fa-heart" style="color:#fff"></i></span></a></span><span class="icon-bg-blue"><a  href="#" ><span class="msgIcon-on"><i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i></span></a></span><span class="icon-bg-blue posrelative"><a  href=""><span class="msgIcon-on"><i class="fa fa-user" style="color:#fff"></i></span></a>
+                   
+                    </span><span class="icon-bg"><span class="activity-icon"><span class="clr7"><i class="fa fa-clock-o"></i> Last Online </span><br>
+                    <a class="clr5" style="cursor:auto;">2 hrs ago</a></span></span> </div>
+                  <br clear="all">
+                  <div class="src-user-data clearfix">
+                    <div class="userdata-left fleft">
+                      <ul>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data">28 yrs, 5 ft 3 in / 160 cm</span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data">Church of Christ</span></li>
+                        <li><span class="input-field">Education</span><span class="input-data">B.Sc. Nursing</span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data">Nurse</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br clear="all">
+                  <div class="dot-step padb3"><!--  --></div>
+                  <div class="src-user-data">
+                    <div class="userdata-left">
+                      <ul>
+                        <li><a href="" class="clr6 srch-line"> View Full Profile</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <br clear="all">
+              </div>
+             
+            </div>
+          </div>
+          <div class="srch-profile-contents">
+            <div class="profContainer profile-srch bgclr5 srcbdr posrelative" style="cursor:pointer; margin-bottom:25px; background-color:#fff">
+              <div class="padt10 padl10 padb10 padr5">
+                <div>
+                  <div class="fleft padt5 padr5"><a  class="clr6 font14  boldtxt">CHR2007924</a></div>
+                  <div class="fleft padl4 padt4 padr8 mediumtxt clr15">|</div>
+                  <div class="fleft padt4 mediumtxt clr5"><span class="clr7">Profile Created for</span> Daughter</div>
+                  <div class="fright mediumtxt padt3" style="padding-right:40px;" ><span><a class="clr6 srch-line" href="javascript:;">Mark as Viewed</a></span><span class="padl8 padr8 clr15">|</span><span><a href="#" class="clr6 srch-line">View Similar Profiles</a></span> </div>
+                  <div class="clear"></div>
+                </div>
+                <div class="fleft padt10 col-sm-3">
+                  <div class="ph-imgbg bgclr5 txt-center">
+                    <div class="pad10"><a href="">
+                      <div class="posrelative">
+                        <div><img width="150" height="150" border="0" src="images/profile.jpg"></div>
+                      </div>
+                      </a>
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="fleft padl10 col-sm-9" >
+                  <div class="fleft mediumtxt" >
+                    <div class="font16 boldtxt padl2 padt20 padb15"><a href="#" class="clr9" >K Pavan Kumari</a></div>
+                    <div class="clr5 padb10"><i class="fa fa-map-marker"></i> Anantapur, Andhra Pradesh, In..</div>
+                  </div>
+				  
+                  <div class="fleft padt20"> <span class="icon-bg-blue"><a href="#"><span class="msgIcon-on"><i class="fa fa-heart" style="color:#fff"></i></span></a></span><span class="icon-bg-blue"><a  href="#" ><span class="msgIcon-on"><i class="fa fa-mobile" style="color:#fff;padding-left: 5px;"></i></span></a></span><span class="icon-bg-blue posrelative"><a  href=""><span class="msgIcon-on"><i class="fa fa-user" style="color:#fff"></i></span></a>
+                   
+                    </span><span class="icon-bg"><span class="activity-icon"><span class="clr7"><i class="fa fa-clock-o"></i> Last Online </span><br>
+                    <a class="clr5" style="cursor:auto;">2 hrs ago</a></span></span> </div>
+                  <br clear="all">
+                  <div class="src-user-data clearfix">
+                    <div class="userdata-left fleft">
+                      <ul>
+                        <li> <span class="input-field">Age, Height </span> <span class="input-data">28 yrs, 5 ft 3 in / 160 cm</span> </li>
+                        <li><span class="input-field">Denomination</span><span class="input-data">Church of Christ</span></li>
+                        <li><span class="input-field">Education</span><span class="input-data">B.Sc. Nursing</span></li>
+                        <li><span class="input-field">Occupation</span><span class="input-data">Nurse</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <br clear="all">
+                  <div class="dot-step padb3"><!--  --></div>
+                  <div class="src-user-data">
+                    <div class="userdata-left">
+                      <ul>
+                        <li><a href="" class="clr6 srch-line"> View Full Profile</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <br clear="all">
+              </div>
+             
+            </div>
+          </div>
+         
+        </div>
+      </div>
+     
+	 
+	 <div class="col-sm-2">
+		 <div align="center" style="margin-bottom:20px;"> <a href="#"><img src="images/img1.jpg" class="img-responsive" style="display:block;"/></a> </div>
+		 <div align="center" style="margin-bottom:20px;"> <a href="#"><img src="images/img2.jpg" class="img-responsive" style="display:block;"/></a> </div>
+		 <div align="center" style="margin-bottom:20px;"> <a href="#"><img src="images/img3.jpg" class="img-responsive" style="display:block;"/></a> </div>
+	 </div>
+	 
+    </div>
+  </article>
+</section>
+<section class="footer">
+  <div class="container footer-two">
+    <div class="col-md-12 col-sm-12">
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html"><i class="fa fa-check"></i> About Us</a></li>
+          <li><a href="#"><i class="fa fa-check"></i> Success Stories</a></li>
+          <li><a href="#" ><i class="fa fa-check"></i> Membership Plans</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <h4>Help &amp; Support</h4>
+        <ul>
+          <li><a href="#"><i class="fa fa-check"></i> Live Support</a></li>
+          <li><a href="#"><i class="fa fa-check"></i> Online Help - FAQ</a></li>
+          <li><a href="contact.html"><i class="fa fa-check"></i> Contact us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="privacypolicy.html"><i class="fa fa-check"></i> Privacy Policy</a></li>
+          <li><a href="terms.html"><i class="fa fa-check"></i> Terms of Use</a></li>
+          <li><a href="#"><i class="fa fa-check"></i> Payment Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-6">
+        <h4>Follow Us</h4>
+        <ul class="social-icons icon-circle icon-zoom list-unstyled list-inline">
+          <li> <a href="#"><i class="fa fa-facebook"></i></a></li>
+          <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
+          <li> <a href="#"><i class="fa fa-linkedin"></i></a></li>
+          <li> <a href="#"><i class="fa fa-pinterest"></i></a></li>
+          <li> <a href="#"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-sm-6 col-xs-6">
+        <ul class="social-icons icon-circle icon-zoom list-unstyled list-inline">
+          <li>
+            <div class="right ">
+              <h4>About Us</h4>
+              <a href="#">There is no better business referral than that is given by a satisfied client.</a> </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="tiny-footer"><span>Copyrights 2018, redcarpetmatrimony.com. All Rights Reserved.</span> &nbsp;</footer>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body"> <a href="javascript:void(0);" class="loginclose" data-dismiss="modal">&times;</a>
+        <div class="login-form-section">
+          <div class="lpage-overlay loader-wrapper">
+            <div class="disc-loader-svg"></div>
+          </div>
+          <h2>Login to your account</h2>
+          <p>And begin a beautiful journey</p>
+          <label class="label lsuccess-text" style="font-size: 12px; text-align: center;"></label>
+          <form method="POST" name="loginfrm" id="loginfrm" action="#">
+            <div class="form-group mt-10">
+              <div class="">
+                <input type="email" name="emailid" id="loginEmail" class="common-input emial required" placeholder="Email Address">
+                <!--<small class="lv-alert alert-danger">Please enter a valid email address</small> --></div>
+            </div>
+            <div class="form-group">
+              <div class="">
+                <input type="password" name="password" id="loginPass" class="common-input required" placeholder="Password">
+                <!--   <small class="lv-alert alert-danger">Wrong password. Try again.</small> --></div>
+            </div>
+            <div class="form-group">
+              <div class="">
+                <button type="submit" name="userLogin" value="Login" id="LoginBTN" class="btn btn-lg btn-primary btn-block ripplelink">LOGIN</button>
+              </div>
+            </div>
+          </form>
+          
+          <!--button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button--> 
+          
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog"> 
+              
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">User Rigistred Successfully</h4>
+                  <button type="button" style="margin-top:30px;" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="login-forgot-link">
+            <ul class="list-inline">
+              <li><a href="#">Forgot Password ?</a></li>
+              <li><a href="#">Resend Activation Email</a></li>
+              <li><a href="#">Help</a></li>
+            </ul>
+          </div>
+          <div class="login-or-register"><span class="_43mh">OR</span></div>
+          <div class="login-register-section">
+            <p>Don't have an account?</p>
+            <div class="form-group">
+              <div class="" align="center"> <a href="../3/register.html" id="HP_Banner_Register_CTA" class="btn btn-primary "> REGISTER FREE</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap core JavaScript  ================================================== --> 
+<script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js" ></script> 
+<script type="text/javascript" src="assets/js/bootstrap/bootstrap-select.min.js"></script> 
+<script type="text/javascript" src="assets/js/main7893.js?v=24" ></script> 
+<!--<script type="text/javascript" src="https://www.lovevivah.com/assets/js/slick/slick.js"></script> --> 
+<script type="text/javascript" src="assets/js/select2/select2.min.js" ></script> 
+<script type="text/javascript" src="assets/js/commonfc7a.js?v=29"></script> 
+<script type="text/javascript">
+    $(document).ready(function () {
+        NewAccount.Screen.Self.init()        
+        Account.Screen.ReligionCaste.init()
+
+    }); 
+</script> 
+<script src="../cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script> 
+<script src="assets/js/slick/slick.js"></script> 
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
+<script src="assets/js/owl-carousel/owl.carousel.js"></script> 
+<script>
+	$(document).ready(function() {
+		var owl = $('.matcheRecievedsall');
+		owl.owlCarousel({
+			margin: 10,
+			nav: true,
+			loop: false,
+			animateOut: 'slideOutDown',
+			animateIn: 'fadeIn',			
+			responsive: {
+				0: {
+                    items: 1
+				},
+				320: {
+                    items: 1
+				},
+				375: {
+                    items: 1
+				},				  
+				480: {
+                    items: 1
+				},
+				768: {
+                    items: 1
+				},
+				992: {
+                    items: 1
+				}
+			}
+		})
+	});
+	
+</script> 
+<script type="text/javascript">
+    $(document).click(function(e) {		
+		if (!$(e.target).is('a')) {
+			$('#navbar').collapse('hide');			
+		}
+	});
+	/* for chat popup----dont remove */
+	$(window).on('load', function() {
+		if($(window).width() > 480) {
+			$('.opencometchat').addClass('cometchat_profile');
+			$('.opencometchat').removeClass('cometchat_ccmobiletab_redirect_custom');
+			$('.cometchat_profile').unbind('click');
+			$('.cometchat_profile').bind('click', function(e){
+				jqcc.cometchat.userClick(e.target,0);
+			});
+		}else{
+			$('.opencometchat').addClass('cometchat_ccmobiletab_redirect_custom');
+			$('.opencometchat').removeClass('cometchat_profile');
+			$('.cometchat_ccmobiletab_redirect_custom').unbind('click');
+			$('.cometchat_ccmobiletab_redirect_custom').bind('click',function(e){
+				var userId = $(e.target).attr('id');
+				userId = userId.substr(19);
+				jqcc.ccmobiletab.chatWith(userId);
+			});
+		}
+	});
+	/* for chat popup----dont remove */	
+	
+</script> 
+<script type="text/javascript" src="assets/app/pagecontent2dac.js?v=21"></script> 
+<script type="text/javascript" src="../tw.netcore.co.in/smartechclient.js"></script> 
+<script type="text/javascript">
+    smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96A0CSMFO7J7F5Q2NUG42EHRHG6TG');
+    smartech('identify', '');
+    smartech('dispatch', 1 , {});
+</script> 
+<script type="text/javascript">  
+	$(document).ready(function () {
+		$('.myButton').click(function(){   
+			$(this).find('i').toggleClass('fa-plus-circle fa-minus-circle')
+		});	
+	 });
+	$(document).click(function() {
+	  var className = $('#myNavbar').attr('class');
+	  if('navbar-collapse collapse in'){
+		$('#myNavbar').removeClass( "navbar-collapse collapse in" ).addClass( "navbar-collapse collapse");
+		}   
+	}); 
+    </script>
+</body>
+</html>

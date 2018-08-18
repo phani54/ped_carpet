@@ -36,8 +36,10 @@ if(isset($_SESSION['id']))
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/owl-carousel/owl.theme.default.min8d0c.css?v=26" type="text/css" />
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/animate2.min.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/custom7efa.css?v=45" media="screen" type="text/css" />
+    <link rel="stylesheet" href="<?php echo URL;?>assets/css/jquery-ui.css" media="screen" type="text/css" />
     <script src="<?php echo URL ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.validate.min.js"></script>
+    <script src="<?php echo URL ?>assets/js/jquery-ui.js"></script>
     <script src="<?php echo URL ?>assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- <script src="<?php echo URL ?>assets/app/HomeApp7893.js"></script> -->

@@ -1,0 +1,310 @@
+.src_form .form_label {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 center;
+    color: #b1b3b9;
+    display: block;
+    float: left;
+    height: auto;
+    line-height: 45px;
+    margin: 0 5px 0 0;
+    width: 153px;
+}.src_field_box {
+    float: left;
+    line-height: 35px;
+    margin-left: 10px;
+    width: 489px;
+	
+}.src_field_box .src_field_select {
+    height: 22px;
+    margin: 13px 0 0;
+    width: 150px;
+}
+
+#search_forms_content .ddSelOptHolder {
+    background: #fff none repeat scroll 0 0;
+    margin: 0;
+    min-height: 33px;
+    width: 419px;
+}
+.ddSelOptHolderOpen {
+    cursor: default;
+    display: block;
+}
+
+
+#search_forms_content .ddOptionHolder {
+    color: #72727d;
+    width: 452px;
+}
+
+
+
+.ddSelectedOptSpan {
+    background: #f3f3f3 url(../images/close-default.png) no-repeat scroll 96% center;
+    border-radius: 3px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #717171;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px 1px;
+    padding: 1px 21px 1px 6px;
+	border:#e3e3e3 solid 1px;
+    position: relative;
+	font-size: 14px;
+}
+
+.ddSelWrap {
+    border-bottom: 1px solid #cccccc;
+	border-top: 0px solid #cccccc;
+	border-right: 0px solid #cccccc;
+	border-left: 0px solid #cccccc;
+    border-radius: 0px;
+    margin: 0px 0;
+    width: 100%;
+    padding: 0px 0px;
+    font-size: 15px;
+	transition:all 0.5s;
+}
+.ddSelWrapOpen{
+	border-color: #ea0c6b;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, .075) inset, 0 0 0px rgba(225, 186, 56, .6);
+    outline: 0;
+	}
+
+#search_forms_content .ddOptHolderWrapper {
+    height: auto;
+    min-height: 33px;
+    width: 100%;
+}
+.ddOptHolderWrapper {
+    background: rgba(0, 0, 0, 0) url("../images/dropdown-bg.html") repeat-y scroll right top;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+
+.ddSelOptHolderOpen {
+    cursor: default;
+    display: block;
+}
+.ddSelOptHolder {
+    background: transparent none repeat scroll 0 0;
+    box-shadow: -0px 0 0px 0 #ddd;
+    display: none;
+    margin: -2px 0 0;
+}
+#search_forms_content input.ddSelOptText {
+    height: 33px;
+}
+input.ddSelOptText {
+    border: 0 none;
+    color: #72727d;
+    display: inline-block;
+    font: 12px/26px arial;
+    height: 26px;
+    max-width: 166px;
+    outline: medium none !important;
+    overflow-wrap: break-word;
+    padding: 0 5px;
+    width: auto;
+}
+
+
+
+.ddOptionHolder {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #c5c5c5 #c5c5c5;
+    border-image: none;
+    border-radius: 0 0 0px 0px;
+    border-style: none solid solid;
+    border-width: 0 0px 0px;
+    -webkit-box-shadow:0 3px 3px 0px rgba(0, 0, 0, 0.22);
+       -moz-box-shadow:0 3px 3px 0px rgba(0, 0, 0, 0.22);
+            box-shadow:0 3px 3px 0px rgba(0, 0, 0, 0.22);
+    display: none;
+    margin: 1px 0 0 -1px;
+    width: 92% !important;
+}
+
+
+
+.search_heads {
+    background: #f1f1f2 none repeat scroll 0 0;
+    border: 1px solid #f1f1f2;
+    color: #72727d;
+    cursor: pointer;
+    font: bold 14px/32px arial;
+    margin: 11px 9px 0;
+    padding: 0 0 0 8px;
+}
+
+
+#search_forms_content .ddOptHolder {
+    background: rgba(0, 0, 0, 0) url("../img/down-gray-arrow.png") no-repeat scroll 433px center;
+    min-height: 33px;
+}
+#search_forms_content .ddOptHolderOpen {
+    background: rgba(0, 0, 0, 0) url("../img/up-gray-arrow.png") no-repeat scroll 433px center;
+}
+
+
+#search_forms_content .ddSelectedVal {
+    color: #72727d;
+    font: 12px/32px arial;
+    min-height: 33px;
+    overflow: hidden;
+    padding: 0 0 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 414px;
+}
+#search_forms_content .ddSelectedOptSpan {
+    background: rgba(0, 0, 0, 0) url("../img/close-default.png") no-repeat scroll 97% center;
+    color: #72727d;
+    font: 12px/13px arial;
+    margin: 7px 2px;
+    padding: 3px 20px 4px 6px;
+}
+#search_forms_content .ddSelectedOptSpan:hover {
+    background: #f1f1f2 url("../img/close-hover.png") no-repeat scroll 97% center;
+}
+#search_forms_content .ddSelectedOptSpanHover {
+    background-color: #f1f1f2;
+    background-image: url("../img/close-hover.png");
+    background-position: 96% center;
+    background-repeat: no-repeat;
+}
+
+#location_details {
+    margin: 19px 9px 0;
+}
+
+.collapsible_content {
+    margin: 11px 0 19px;
+}
+
+
+.ss_input {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #dfe0e3;
+    border-radius: 3px;
+    color: #72727d;
+    font: 12px/28px arial;
+    height: 26px;
+    margin: 3px 0 0;
+    padding: 0 5px;
+    width: 194px;
+}
+
+
+
+
+
+.tt_icon_holder {
+    float: right;
+    margin: 2px 25px 0 0;
+}
+
+
+
+
+
+.ddLabelHolderOpen {
+    cursor: default;
+    padding: 0 0 3px;
+    position: relative;
+    width: 184px;
+    z-index: 1;
+}
+.ddLabelHolderOpen p.ddLabel {
+}
+
+.ddSelOptHolderOpen {
+    cursor: default;
+    display: block;
+}
+.ddSelectedVal {
+    background: #fff none repeat scroll 0 0;
+    border-top: 1px solid #e5e5e5;
+    color: #72727d;
+    display: block;
+    font: 12px/26px arial;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 0 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 179px;
+}
+
+.ddSelectedOptSpan:hover {
+    background: #f1f1f2 url("../images/close-hover.png") no-repeat scroll 96% center;
+}
+.ddSelectedOptSpanHover {
+    background-color: #f1f1f2;
+    background-image: url("../images/close-hover.png");
+    background-position: 96% center;
+    background-repeat: no-repeat;
+}
+input.ddSelOptText {
+    border: 0 none;
+    color: #72727d;
+	background:transparent;
+    display: inline-block;
+    font: 15px/26px arial;
+    height: 26px;
+    max-width: 166px;
+    outline: medium none !important;
+    overflow-wrap: break-word;
+    padding: 0 5px;
+    width: auto;
+}
+input.ddSelOptText:focus {
+    outline: medium none !important;
+	border-color: #ffba38;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, .075) inset, 0 0 0px rgba(225, 186, 56, .6);
+    outline: 0;
+}
+
+.ddOptionHolderOpen {
+    display: block;
+    position: absolute;
+    z-index: 1;
+	/*margin-left:0%;*/
+	margin-top: 1px;
+	transition:all 0.3s;
+}
+.ddOptionHolder ul {
+    background: #fff none repeat scroll 0 0;
+    display: block;
+    list-style: outside none none;
+    margin: 0;
+    max-height: 230px;
+    overflow-y: auto;
+    padding: 0;
+}
+.ddOptionHolder ul li {
+    color: #72727d;
+    cursor: pointer;
+    font: 14px/24px arial;
+    margin: 0;
+    padding: 7px 16px;
+}
+.ddOptionHolder ul li.ddOptgroupLI {
+    font: bold 14px/26px arial;
+    padding: 0 7px;
+}
+.ddOptionHolder ul li.ddOptLI {
+    padding: 0 0 0 15px;
+}
+.ddOptionHolderLiHover {
+    background: #f3f3f3 none repeat scroll 0 0;
+    color: #72727d;
+}
+.partner_search_box .search_options {
+    margin: 0 8px 8px;
+}
