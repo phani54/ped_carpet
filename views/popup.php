@@ -8,8 +8,8 @@
 	color: #FFF !important;
 }
 </style>
- <link rel="stylesheet" href="<?php echo URL;?>/assets/css/simpleToastMessage.css" media="screen" type="text/css" />
- <script src="<?php echo URL;?>/assets/js/simpleToastMessage.js"></script> 
+ <link rel="stylesheet" href="<?php echo URL;?>assets/css/simpleToastMessage.css" media="screen" type="text/css" />
+ <script src="<?php echo URL;?>assets/js/simpleToastMessage.js"></script> 
 
 <!-- Login Modal -->
 <div id="loginModal" class="modal fade" role="dialog">
@@ -155,7 +155,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).reday(function(){
+    $(document).ready(function(){
         $('#err_msg_otp').removeClass('lv-alert alert-danger');
         $('#err_msg_otp').text("");
     })

@@ -319,7 +319,7 @@ $('#reg_form').validate({
                     mobile:$('#reg_mobile').val(),
                     name:$('#name').val(),   
                     pwd:$('#pwd').val(),
-                    gender:$('#gender').val(),
+                    gender:$('input[name=gender]:checked').val(),
                     m_status:$('#m_status').val(),
                     religion:$('#religion').val(),
                     denomination:$('#denomination').val(),
@@ -343,7 +343,7 @@ $('#reg_form').validate({
                     {
                         if(response['msg'] == 'open_profile')
                         {
-                            window.location = '<?php echo URL ?>profile_details.php';
+                            window.location = '<?php echo URL_VIEW;?>profile_details.php';
                         }
                         else
                         {
