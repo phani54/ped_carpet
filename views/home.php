@@ -5,7 +5,7 @@ require "lib/config.php";
 
 ?>
     <!--Header Start-->
-    <?php require('header.php'); ?>
+    <?php include 'header.php'; ?>
 
         <!--Header End-->
 

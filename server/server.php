@@ -208,4 +208,22 @@ if(isset($_POST) && $_POST['action'] == 'resend_otp')
 	}
 }
 
+if(isset($_POST) && $_POST['action'] == 'complete_profile')
+{
+	print_r($_POST);
+	exit;
+	// $chk_qry = $db->query("SELECT otp FROM profiles WHERE mobile='".$_POST['hdn_mobile']."'");
+	// if($chk_qry->rowCount() > 0)
+	// {
+	// 	$res = $chk_qry->fetch();
+	// 	$otp = $res['otp'];
+	// 	//Write sent sms code here
+	// 	echo json_encode(array('status'=>'success')); 
+	// }
+	// else
+	// {
+	// 	echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
+	// }
+}
+
 ?>

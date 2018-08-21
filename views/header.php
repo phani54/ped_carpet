@@ -24,7 +24,7 @@
     <script src="<?php echo URL ?>assets/js/bootstrap/bootstrap.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="<?php echo URL ?>assets/js/angular.min.js"></script>
-    <script src="<?php echo URL ?>assets/js/angular-sanitize.j"></script>
+    <script src="<?php echo URL ?>assets/js/angular-sanitize.js"></script>
     <script src="<?php echo URL ?>assets/app/HomeApp7893.js"></script>
     <script src="<?php echo URL ?>assets/js/pagescripts.js"></script>
 

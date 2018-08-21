@@ -1,4 +1,4 @@
- <!doctype html>
+<!--  <!doctype html>
 <html class="no-js" prefix="ng: https://angularjs.org">
  
 <head> 
@@ -41,7 +41,7 @@
 	
     <body>   
 
-<!--Desktop Navbar -->
+Desktop Navbar 
 <nav class="navbar navbar-default navbar-fixed-top lv-nav" ng-controller="headerController"> 
 	<div class="container-fluid top-nav">
 	<div class="container">
@@ -94,9 +94,11 @@
       
     </nav>
 
-	<br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br> -->
 	
-	
+	<?php
+include "inner_header.php";
+?>  
 	 <section class="container-full theme-bg-panel col-xs-12">
   <div class="row">
    <h1>Congrats! Your Name</h1>
@@ -142,7 +144,7 @@
      </div>
         
 	       <div class="plan-register-section">
-      <a href="dashboard.html">  <button type="submit" class="btn register-now-btn btn-Pright">Skip</button></a>
+      <a href="dashboard.php">  <button type="submit" class="btn register-now-btn btn-Pright">Skip</button></a>
 	 </div>
 	 	 
      
