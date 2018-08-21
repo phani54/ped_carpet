@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2018 at 06:43 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Aug 21, 2018 at 03:02 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -71,6 +71,27 @@ INSERT INTO `banners` (`guid`, `image`) VALUES
 (13, '1513449864_9a.jpg'),
 (14, '1513450406_7.jpg'),
 (15, '1514668820_Just.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `body_types`
+--
+
+CREATE TABLE `body_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `body_types`
+--
+
+INSERT INTO `body_types` (`id`, `name`) VALUES
+(1, 'Slim'),
+(2, 'Normal'),
+(3, 'Average'),
+(4, 'Heavy');
 
 -- --------------------------------------------------------
 
@@ -48495,6 +48516,28 @@ INSERT INTO `cities1` (`guid`, `cid`, `sid`, `name`, `dateandtime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `complexions`
+--
+
+CREATE TABLE `complexions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `complexions`
+--
+
+INSERT INTO `complexions` (`id`, `name`) VALUES
+(1, 'Very Fair'),
+(2, 'Fair'),
+(3, 'White'),
+(4, 'White Brown'),
+(5, 'Dark');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `countries`
 --
 
@@ -49223,6 +49266,50 @@ INSERT INTO `packages` (`guid`, `pname`, `amount`, `duration`, `image`, `profile
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `person_heights`
+--
+
+CREATE TABLE `person_heights` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `person_heights`
+--
+
+INSERT INTO `person_heights` (`id`, `name`) VALUES
+(1, '5 Feet'),
+(2, '5 Feet 1 Inches'),
+(3, '5 Feet 2 Inches'),
+(4, '5 Feet 3 Inches'),
+(5, '5 Feet 5 Inches');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `person_weights`
+--
+
+CREATE TABLE `person_weights` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `person_weights`
+--
+
+INSERT INTO `person_weights` (`id`, `name`) VALUES
+(1, '35 Kg'),
+(2, '45 Kg'),
+(3, '55 Kg'),
+(4, '65 Kg'),
+(5, '75 Kg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `plans`
 --
 
@@ -49327,7 +49414,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `profile_id`, `profile_for`, `name`, `gender`, `image`, `birth_date`, `birth_month`, `birth_year`, `age`, `dob`, `marital_status`, `religion`, `denomination`, `sub_caste`, `mother_tongue`, `country`, `country_code`, `state`, `city`, `address`, `citizenship`, `mobile`, `alt_number`, `email`, `password`, `security_key`, `height`, `weight`, `body_type`, `complexion`, `physical_status`, `willing_to_marry_other`, `religious_values`, `division`, `education`, `languages_known`, `employed_in`, `occupation`, `annual_income`, `family_value`, `family_type`, `family_status`, `father_occupation`, `mother_occupation`, `no_of_brothers`, `no_of_sisters`, `eating_habits`, `drinking_habits`, `interests`, `hobbies`, `music`, `sports`, `food`, `ethnicity`, `about`, `otp`, `otp_flag`, `approval_status`, `package`, `activation_on`, `de_active_on`, `package_status`, `profile_views`, `created_on`, `created_by`, `created_by_id`, `updated_on`, `updated_by`, `updated_by_id`) VALUES
-(1, 'RCM50019', 'Myself', 'Theresa konda', 'Female', '1521201686_BeautyPlus_20170223152856_1save.jpg', 10, 10, 1991, 26, '1991-10-10', 'Unmarried', '14', 'Church of South India(C.S.I)', '', 'Telugu', '', '', '', 'Hyderabad ', 'Secuenderabad', '', '8497992797', '', 'kondatheresa91@gmail.com', 'queen123', '', '5ft 0in / 152 cms', '', '', '', '', 0, '', '', 'B.A', '', 'Employed', 'Pilot', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:43:57', 0, 0, '0000-00-00 00:00:00', 0, 0),
+(1, 'RCM50019', 'Myself', 'Theresa konda', 'Female', '1521201686_BeautyPlus_20170223152856_1save.jpg', 10, 10, 1991, 26, '1991-10-10', 'Unmarried', '14', 'Church of South India(C.S.I)', '', 'Telugu', '', '', '', 'Hyderabad ', 'Secuenderabad', '', '8497992797', '', 'kondatheresa91@gmail.com', 'queen123', '', '5ft 0in / 152 cms', '', '', '', '', 1, '', '', 'B.A', '', 'Employed', 'Pilot', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-21 11:45:09', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (2, 'RCM50020', 'Daughter', 'Bethapudi Sanjhaya Rani', 'Female', '1510318503_22279851_1082894075179960_1913895604406211103_n.jpg', 12, 11, 1990, 26, '1990-11-12', 'Unmarried', '14', '', '', 'Telugu', '', '', '', 'hyderabad', 'musheerabad', '', '8919098262', '', 'sandhyarani072@gmail.com', 'yehova!23', '', '5ft 3in / 159 cms', '', '', '', '', 0, '', '', 'B.Sc', '', 'Self Employed', 'Govt. Sector', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:43:57', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (3, 'RCM50022', 'Myself', 'Gera Kiran Kumar', 'Male', '1511290356_16665142_10206144234483100_3275491972528338855_o.jpg', 16, 5, 1978, 39, '1978-05-16', 'Unmarried', '14', '', '', 'Telugu', '', '', '', 'Hyderabad', 'Khairathabad', '', '9885664558', '', 'kirandesignstudios@gmair.com', 'artist', '', '5ft 0in / 152 cms', '', '', '', '', 0, '', '', 'B.Com', '', 'Self Employed', 'Lecturer', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:43:57', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (4, 'RCM50030', 'Son', 'P. Edwin Dennison', 'Male', '1528174520_20180605_102424.jpg', 20, 1, 1987, 31, '1987-01-20', 'Unmarried', '14', 'Church of South India(C.S.I)', '', 'Telugu', '', '', '', 'Hyderabad', 'Sandhya Seriglio Apartment,Dayanand Nagar, Malkajgiri.', '', '9533787024', '', 'edwin@gmail.com', 'edwin123', '', '5ft 6in / 167 cms', '', '', '', '', 0, '', '', 'B.A', '', 'Employed', 'Fashion Designer', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:43:57', 0, 0, '0000-00-00 00:00:00', 0, 0),
@@ -49436,7 +49523,7 @@ INSERT INTO `profiles` (`id`, `profile_id`, `profile_for`, `name`, `gender`, `im
 (106, 'RCM500237', 'Son', 'K.Ravi varma', 'Male', '1533208511_20180802_150555.jpg', 7, 4, 1983, 35, '1983-04-07', 'Unmarried', '14', 'Church of South India(C.S.I)', '', 'Telugu', '', '', '', 'USA', 'USA', '', '9989378927', '', 'ravivarmarcm@gmail.com', 'ravi1234', '', '5ft 7in / 170 cms', '', '', '', '', 0, '', '', 'MS', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (107, 'RCM500238', 'Daughter', 'PRISCILLA ROSE', 'Female', '1533208568_20180802_164125.jpg', 9, 7, 1990, 28, '1990-07-09', 'Unmarried', '14', ' Others', '', 'Telugu', '', '', '', 'SECUNDERBAD', 'madhuranagar colony,Neredmet', '', '9703848185', '', 'priscillarcm@gmail.com', 'rose123', '', '5ft 3in / 160 cms', '', '', '', '', 0, '', '', 'Masters-Degree', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (108, 'RCM500239', 'Daughter', 'PATRICIA', 'Female', '1533209030_20180802_165206.jpg', 16, 12, 1991, 26, '1991-12-16', 'Unmarried', '14', 'Roman Catholic', '', 'Telugu', '', '', '', 'SECUNDERBAD', 'modis compound', '', '8897914257', '', 'ptriciarcm@gmail.com', 'pat1234', '', '5ft 7in / 169 cms', '', '', '', '', 0, '', '', 'B.A', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
-(110, 'RCM521320', 'Self', 'Phani Kumar', '', '', 0, 0, 0, 0, '2012-08-20', 'Unmarried', 'Christian', 'Roman Catholic', 'Apostolic', 'Abkhazian', 'India', '91', '', '', '', '', '9701339351', '', '', '123456', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 317386, 1, '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-18 08:33:17', 0, 0, '0000-00-00 00:00:00', 0, 0);
+(110, 'RCM521320', 'Relative', 'phani', 'Male', '', 22, 8, 1989, 29, '1989-08-22', 'Unmarried', 'Muslim', 'Church of South India(C.S.I)', 'Adventist', 'Aymara', 'India', '91', 'Andhra Pradesh', 'Port Blair', '', 'India', '9701339351', '9701339351', 'phanikumar.allanki@gmail.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', '5 Feet 2 Inches', '65 Kg', 'Average', 'White Brown', 'Physically Challenged', 1, 'Believe in Jesus not in religion', 'Others', 'B.Arch', 'Amharic, Assamese, English', 'Private', 'Software', '4 - 5 Lakhs', 'Moderate', 'Joint Family', 'Rich / Affluent', 'bussiness', 'House wife', 3, 2, 'Eggetarian', 'Regular drinker', 'Listening to music, Travelling', 'Dancing, Gardening', 'Indian classical music, Western music', 'Chess, Co Co', 'Chines, Indian', 'Caribben', 'About about about', 923666, 1, '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-21 11:47:18', 0, 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -54036,6 +54123,12 @@ ALTER TABLE `banners`
   ADD PRIMARY KEY (`guid`);
 
 --
+-- Indexes for table `body_types`
+--
+ALTER TABLE `body_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `caste`
 --
 ALTER TABLE `caste`
@@ -54058,6 +54151,12 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `cities1`
   ADD PRIMARY KEY (`guid`);
+
+--
+-- Indexes for table `complexions`
+--
+ALTER TABLE `complexions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `countries`
@@ -54113,6 +54212,18 @@ ALTER TABLE `occupations`
 --
 ALTER TABLE `packages`
   ADD PRIMARY KEY (`guid`);
+
+--
+-- Indexes for table `person_heights`
+--
+ALTER TABLE `person_heights`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `person_weights`
+--
+ALTER TABLE `person_weights`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `plans`
@@ -54210,6 +54321,12 @@ ALTER TABLE `banners`
   MODIFY `guid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `body_types`
+--
+ALTER TABLE `body_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `caste`
 --
 ALTER TABLE `caste`
@@ -54232,6 +54349,12 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `cities1`
   MODIFY `guid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `complexions`
+--
+ALTER TABLE `complexions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -54286,6 +54409,18 @@ ALTER TABLE `occupations`
 --
 ALTER TABLE `packages`
   MODIFY `guid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `person_heights`
+--
+ALTER TABLE `person_heights`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `person_weights`
+--
+ALTER TABLE `person_weights`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `plans`
