@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+// session_start();
 require "../lib/config.php";
 require "../lib/pageing.php";
 require "../lib/path.php";

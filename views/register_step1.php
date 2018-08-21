@@ -108,7 +108,7 @@ include "inner_header.php";
 					<h2 style="color: #ed3237;">COMPLETE YOUR PROFILE</h2>	
 					<small>Fill few more information to complete your profile and you will be ready to meet your matches.</small>
 					
-					<p class="pull-right">STEP 2</p>
+					<!-- <p class="pull-right">STEP 2</p> -->
 					
 					
 		<div class="col-xs-12 col-sm-12 ">			
