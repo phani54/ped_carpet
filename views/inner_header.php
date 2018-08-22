@@ -37,7 +37,8 @@ if(isset($_SESSION['id']))
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/animate2.min.css" media="screen" type="text/css" />
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/custom7efa.css?v=45" media="screen" type="text/css" />
     <link rel="stylesheet" href="<?php echo URL;?>assets/css/jquery-ui.css" media="screen" type="text/css" />
-    <!-- <link rel="stylesheet" href="<?php echo URL;?>assets/css/multi-select.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="<?php echo URL;?>assets/css/main.css" type="text/css" /> -->
+    <link rel="stylesheet" href="<?php echo URL;?>assets/css/croppic.css" type="text/css" />
     <script src="<?php echo URL ?>assets/js/jquery.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo URL ?>assets/js/jquery-ui.js"></script>
@@ -50,7 +51,9 @@ if(isset($_SESSION['id']))
     <!--<script type="text/javascript" src="https://www.lovevivah.com/assets/js/slick/slick.js"></script> --> 
     <script type="text/javascript" src="<?php echo URL ?>assets/js/select2/select2.min.js" ></script> 
     <script type="text/javascript" src="<?php echo URL ?>assets/js/commonfc7a.js?v=29"></script> 
-    <!-- <script type="text/javascript" src="<?php echo URL ?>assets/js/jquery.multi-select.js"></script>  -->
+    <script type="text/javascript" src="<?php echo URL ?>assets/js/jquery.mousewheel.min.js"></script> 
+    <script type="text/javascript" src="<?php echo URL ?>assets/js/croppic.js"></script> 
+    <!-- <script type="text/javascript" src="<?php echo URL ?>assets/js/main.js"></script> -->
     <script type="text/javascript" src="<?php echo URL ?>assets/js/multiselect.min.js"></script> 
     <script type="text/javascript">
         $(document).ready(function () {

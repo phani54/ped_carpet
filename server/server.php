@@ -129,7 +129,15 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 				$_SESSION['show_gender']='Female';
 			else
 				$_SESSION['show_gender']='Male';
-			echo json_encode(array('status'=>'error','msg'=>'open_profile'));
+			$update_qry = $db->query("UPDATE profiles SET profile_for='".$_POST['profile_for']."',mobile='".$_POST['mobile']."',name='".$_POST['name']."',password='".$_POST['pwd']."',otp='".$otp."',security_key='".md5($_POST['pwd'])."',marital_status='".$_POST['m_status']."',religion='".$_POST['religion']."',denomination='".$_POST['denomination']."',sub_caste='".$_POST['caste']."',mother_tongue='".$_POST['mother_tongue']."',country='".$_POST['country']."',country_code='".$_POST['country_code']."',dob='".$dob."',`gender`='".$_POST['gender']."',`birth_date`='".$birth_date."',`birth_year`='".$birth_year."',`birth_month`='".$birth_month."',`age`='".$age."' WHERE mobile='".$_POST['mobile']."'");
+			if($update_qry)
+			{
+				echo json_encode(array('status'=>'error','msg'=>'open_profile'));
+			}
+			else
+			{
+				echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
+			}
 		}
 		else
 		{
@@ -148,6 +156,10 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 				{
 					echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
 				}
+			}
+			else
+			{
+				echo json_encode(array('status'=>'error','msg'=>'Something went wrong, Please try again!!'));
 			}
 		}
 	}
@@ -283,7 +295,7 @@ if(isset($_POST) && $_POST['action'] == 'complete_profile')
 	$update_data['food'] = $food;
 	$update_data['about'] = $data['about'];
 	$update_data['approval_status'] = 0;
- 	$res= update('profiles',$update_data,array('id',110),$db);
+ 	$res= update('profiles',$update_data,array('id',$_SESSION['id']),$db);
  	if($res)
  	{
  		echo json_encode(array('status'=>'success'));
@@ -308,6 +320,48 @@ if(isset($_POST) && $_POST['action'] == 'get_cities')
 		array_push($data,$r);
 	}
 	echo json_encode(array('status'=>'success','data'=>$data));
+}
+
+
+if(isset($_POST) && $_POST['action']== 'upload_images')
+{
+	if(isset($_POST['final_images']) || isset($_POST['remove_images']))
+	{
+		$con =0;
+		if(isset($_POST['remove_images']))
+		{
+			for ($i=0; $i< sizeof($_POST['remove_images']); $i++) { 
+
+				unlink('../views/'.$_POST['remove_images'][$i]);
+			}
+			$con = 1;
+		}
+		if(isset($_POST['final_images']))
+		{
+			for ($i=0; $i < sizeof($_POST['final_images']); $i++) 
+			{ 
+				$temp = explode(".", $_POST['final_images'][$i]);
+		    	$extension = end($temp);
+				$time =microtime(true);
+			    $micro_time=sprintf("%06d",($time - floor($time)) * 1000000);
+			    $date=new DateTime( date('Y-m-d H:i:s.'.$micro_time,$time) );
+			    $newname = $date->format("YmdHisu").'.'.$extension;
+				$r = rename('../views/'.$_POST['final_images'][$i], '../adminupload/'.$newname);
+				$db->query("INSERT profile_images(uid,image)VALUES('".$_SESSION['id']."','".$newname."')");
+			}
+			$con = 2;
+			echo json_encode(array('status'=>'success'));
+		}
+		if($con ==1)
+		{
+			echo json_encode(array('status'=>'error','msg'=>'Please upload atleast one image'));
+		}
+	}
+	else
+	{
+		echo json_encode(array('status'=>'error','msg'=>'Please upload atleast one image'));
+	}
+
 }
 
 function insert($tab_name,$field =array())

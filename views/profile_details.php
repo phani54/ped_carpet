@@ -35,7 +35,7 @@ else
                             <option value="">-- Feet/Inches --</option>
                             <?php $get_heights =  $db->query("SELECT * FROM person_heights"); 
                                 while($row = $get_heights->fetch()) { ?>
-                            <option value="<?=$row['name'];?>" <?php if($user_info['height'] == $row['name']){ $country_id=$row['id'];echo 'selected';} ?>><?=$row['name'];?></option>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['height'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -45,7 +45,7 @@ else
                             <option value="">-- Weight in Kgs --</option>
                             <?php $get_weights =  $db->query("SELECT * FROM person_weights"); 
                                 while($row = $get_weights->fetch()) { ?>
-                            <option value="<?=$row['name'];?>" <?php if($user_info['weight'] == $row['name']){ $country_id=$row['id'];echo 'selected';} ?>><?=$row['name'];?></option>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['weight'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -83,7 +83,7 @@ else
                     <h3 style="color: #ed3237;"><i class="fa fa-map-marker"></i> Location Information</h3>
                     <div class="input-group">
                         <div class="input-group-addon">Country Living In <span style="color:red">*</span></div>
-                        <select class="form-control" name="state">
+                        <select class="form-control" name="country" id="country">
                             <option value="">-- Select --</option>
                             <?php 
                             $country_id = 0;
@@ -98,9 +98,11 @@ else
                         <div class="input-group-addon">Residing State  <span style="color:red">*</span> </div>
                         <select class="form-control" name="state" id="state">
                             <option value="">-- Select --</option>
-                            <?php $get_states =  $db->query("SELECT * FROM states WHERE country_id=".$country_id); 
-                                while($row = $get_states->fetch()) { ?>
-                            <option value="<?=$row['name'];?>" <?php if($user_info['state'] == $row['name']){echo 'selected';} ?> ><?=$row['name'];?></option>
+                            <?php 
+                            $state_id = 0;
+                            $get_states =  $db->query("SELECT * FROM states WHERE country_id=".$country_id); 
+                            while($row = $get_states->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['state'] == $row['name']){echo 'selected';$state_id=$row['id'];} ?> ><?=$row['name'];?></option>
                             <?php } ?>
 
                         </select>
@@ -109,8 +111,9 @@ else
                         <div class="input-group-addon">Residing City  <span style="color:red">*</span> </div>
                         <select class="form-control " name="city" id="city">
                             <option value="">-- Select --</option>
-                            <?php $get_cities =  $db->query("SELECT * FROM cities limit 10"); 
-                                while($row = $get_cities->fetch()) { ?>
+                            <?php 
+                            $get_cities =  $db->query("SELECT * FROM cities WHERE state_id=$state_id"); 
+                            while($row = $get_cities->fetch()) { ?>
                             <option value="<?=$row['name'];?>" <?php if($user_info['city'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
                             <?php } ?>
                         </select>
@@ -119,8 +122,10 @@ else
                         <div class="input-group-addon">Citizenship <span style="color:red">*</span> </div>
                         <select class="form-control " name="citizenship" id="citizenship">
                             <option value="">-- Select --</option>
-                            <option value="India" <?php if($user_info['citizenship'] == 'India'){ echo 'selected';} ?> >India</option>
-                            <option value="Iran" <?php if($user_info['citizenship'] == 'Iran'){ echo 'selected';} ?> >Iran</option>
+                            <?php $get_citizenships =  $db->query("SELECT * FROM citizenships"); 
+                            while($row = $get_citizenships->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['citizenship'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -132,17 +137,18 @@ else
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Willing to marry from <span style="color:red">*</span></div>
-                        <label  style="padding-left:30px;"><input type="radio" name="marry_from_other" value="Same Division" <?php if($user_info['willing_to_marry_other'] == 0){?> checked="" <?php } ?>> Same Division</label>
+                        <label  style="padding-left:30px;"><input type="radio" name="marry_from_other" value="0" <?php if($user_info['willing_to_marry_other'] == 0){?> checked="" <?php } ?>> Same Division</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="marry_from_other" value="Other Divisions Also" <?php if($user_info['willing_to_marry_other'] == 1){?> checked="" <?php } ?> >Other Divisions Also</label>
+                        <label><input type="radio" name="marry_from_other" value="1" <?php if($user_info['willing_to_marry_other'] == 1){?> checked="" <?php } ?> >Other Divisions Also</label>
                     </div>
                     <div class="input-group" id="reg_values">
                         <div class="input-group-addon">Religious Values <span style="color:red">*</span> </div>
                         <select class="form-control" name="reg_values">
                             <option value="">-- Select --</option>
-                            <option value="Very religious">Very religious</option>
-                            <option value="Believe in Jesus not in religion">Believe in Jesus not in religion</option>
-                            <option value="Sunday Church Goer">Sunday Church Goer</option>
+                            <?php $get_religious_values =  $db->query("SELECT * FROM religious_values"); 
+                            while($row = $get_religious_values->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['religious_values'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -152,19 +158,10 @@ else
                         <div class="input-group-addon">Highest Education   <span style="color:red">*</span></div>
                         <select class="form-control" name="education">
                             <option value="">-- Select --</option>
-                            <option value="Any Bachelors in Engineering / Computers"><b>Any Bachelors in Engineering / Computers</b></option>
-                            <option value="BCA"> - BCA</option>
-                            <option value="B.Arch"> - B.Arch</option>
-                            <option value="B.Plan"> - B.Plan</option>
-                            <option value="B.E"> - B.E</option>
-                            <option value="B.Tech"> - B.Tech</option>
-                            <option value="B.Sc"> - B.Sc</option>
-                            <option value="Any Master in Engineering / Computers"><b>Any Master in Engineering / Computers</b></option>
-                            <option value="MCA"> - MCA</option>
-                            <option value="M.Arch"> - M.Arch</option>
-                            <option value="M.E"> - M.E</option>
-                            <option value="M.Tech"> - M.Tech</option>
-                            <option value="M.Sc"> - M.Sc</option>
+                            <?php $get_education =  $db->query("SELECT * FROM education"); 
+                            while($row = $get_education->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['education'] == $row['name']){ echo 'selected';} ?>><?=$row['name'];?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="row">
@@ -172,7 +169,7 @@ else
 	                    &nbsp;&nbsp;
 	                    <div class="col-xs-2">
 	                        <select class="form-control" name="languages_known" size="8" multiple="multiple" id="languages_known">
-	                            <?php $get_langueges =  $db->query("SELECT * FROM languages limit 10"); 
+	                            <?php $get_langueges =  $db->query("SELECT * FROM languages"); 
 	                                while($row = $get_langueges->fetch()) { ?>
 	                            <option value="<?=$row['name'];?>"><?=$row['name'];?></option>
 	                            <?php } ?>
@@ -186,7 +183,7 @@ else
 						    </select>
 					  	</div>
 	                </div>
-	                <div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="languages_known_error">Please choose known languages</label>
@@ -195,15 +192,15 @@ else
                         <div class="input-group-addon">Employed in <span style="color:red">*</span></div>
                         <label  style="padding-left:30px;"><input type="radio" checked="" name="employed_in" value="Government"> Government</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="employed_in" value="Defence"> Defence</label>
+                        <label><input type="radio" name="employed_in" value="Defence" <?php if($user_info['employed_in'] == 'Defence') { echo 'checked';} ?> > Defence</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="employed_in" value="Private"> Private</label>
+                        <label><input type="radio" name="employed_in" value="Private" <?php if($user_info['employed_in'] == 'Private') { echo 'checked';} ?>> Private</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="employed_in" value="Business"> Business</label>
+                        <label><input type="radio" name="employed_in" value="Business" <?php if($user_info['employed_in'] == 'Business') { echo 'checked';} ?>> Business</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="employed_in" value="Self Employed"> Self Employed</label>
+                        <label><input type="radio" name="employed_in" value="Self Employed" <?php if($user_info['employed_in'] == 'Self Employed') { echo 'checked';} ?>> Self Employed</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="employed_in" value="Not Working"> Not Working</label>
+                        <label><input type="radio" name="Not Working" value="Not Working" <?php if($user_info['employed_in'] == 'Defence') { echo 'checked';} ?>> Not Working</label>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Occupation  <span style="color:red">*</span></div>
@@ -213,13 +210,13 @@ else
                         <div class="input-group-addon">Annual Income  <span style="color:red">*</span></div>
                         <select class="form-control" name="annual_income">
                             <option value="">--Select Income--</option>
-                            <option value="0 - 1 Lakh">0 - 1 Lakh</option>
-                            <option value="1 - 2 Lakhs">1 - 2 Lakhs</option>
-                            <option value="2 - 3 Lakhs">2 - 3 Lakhs</option>
-                            <option value="3 - 4 Lakhs">3 - 4 Lakhs</option>
-                            <option value="4 - 5 Lakhs">4 - 5 Lakhs</option>
-                            <option value="5 - 6 Lakhs">5 - 6 Lakhs</option>
-                            <option value="6 - 7 Lakhs">6 - 7 Lakhs</option>
+
+                            <option value="1 - 2 Lakhs" <?php if($user_info['annual_income'] == '1 - 2 Lakhs') { echo 'selected';} ?> >1 - 2 Lakhs</option>
+                            <option value="2 - 3 Lakhs" <?php if($user_info['annual_income'] == '2 - 3 Lakhs') { echo 'selected';} ?> >2 - 3 Lakhs</option>
+                            <option value="3 - 4 Lakhs" <?php if($user_info['annual_income'] == '3 - 4 Lakhs') { echo 'selected';} ?> >3 - 4 Lakhs</option>
+                            <option value="4 - 5 Lakhs" <?php if($user_info['annual_income'] == '4 - 5 Lakhs') { echo 'selected';} ?> >4 - 5 Lakhs</option>
+                            <option value="5 - 6 Lakhs" <?php if($user_info['annual_income'] == '5 - 6 Lakhs') { echo 'selected';} ?> >5 - 6 Lakhs</option>
+                            <option value="6 - 7 Lakhs" <?php if($user_info['annual_income'] == '6 - 7 Lakhs') { echo 'selected';} ?> >6 - 7 Lakhs</option>
                         </select>
                     </div>
                 </div>
@@ -231,34 +228,36 @@ else
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Family Value <span style="color:red">*</span></div>
-                        <label  style="padding-left:30px;"><input type="radio" name="family_value" value="Orthodox" checked>   Orthodox</label>
-                        &nbsp;&nbsp;
-                        <label><input type="radio" name="family_value" value="Traditional">  Traditional</label>
-                        &nbsp;&nbsp;
-                        <label><input type="radio" name="family_value" value="Moderate">   Moderate</label>
-                        &nbsp;&nbsp;
-                        <label><input type="radio" name="family_value" value="Liberal">   Liberal</label>
+                        <?php 
+                            $get_family_values =  $db->query("SELECT * FROM family_values"); 
+                            while($row = $get_family_values->fetch()) { ?>
+                            <label  style="padding-left:30px;">
+                            <input type="radio" name="family_value" value="<?=$row['name'];?>" <?php if($user_info['family_value'] == $row['name']) { echo 'checked';} ?> > <?=$row['name'];?>
+                            </label>&nbsp;&nbsp;
+                        <?php } ?>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Family Type <span style="color:red">*</span></div>
-                        <label  style="padding-left:30px;"><input type="radio" name="family_type" value="Joint Family" checked> Joint Family</label>
+                        <label  style="padding-left:30px;"><input type="radio" name="family_type" value="Joint Family" <?php if($user_info['family_type'] == 'Joint Family') { echo 'checked';}?>> Joint Family</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="family_type" value="Nuclear Family"> Nuclear Family</label>
+                        <label><input type="radio" name="family_type" value="Nuclear Family" <?php if($user_info['family_type'] == 'Nuclear Family') { echo 'checked';}?>> Nuclear Family</label>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Family Status <span style="color:red">*</span></div>
-                        <label  style="padding-left:30px;"><input type="radio" name="family_status" value="Middle Class" checked> Middle Class</label>
+                        <label  style="padding-left:30px;"><input type="radio" name="family_status" value="Middle Class" <?php if($user_info['family_status'] == 'Middle Class') { echo 'checked';}?> > Middle Class</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="family_status" value="Upper Middle Class"> Upper Middle Class</label>
+                        <label><input type="radio" name="family_status" value="Upper Middle Class" <?php if($user_info['family_status'] == 'Upper Middle Class') { echo 'checked';}?> > Upper Middle Class</label>
                         &nbsp;&nbsp;
-                        <label><input type="radio" name="family_status" value="Rich / Affluent"> Rich / Affluent</label>
+                        <label><input type="radio" name="family_status" value="Rich / Affluent" <?php if($user_info['family_status'] == ' Rich / Affluent') { echo 'checked';}?> >  Rich / Affluent</label>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Ethnicity   <span style="color:red">*</span></div>
                         <select class="form-control" name="ethnicity">
                             <option value="">-- Select --</option>
-                            <option value="African">African</option>
-                            <option value="Caribben">Caribben</option>
+                            <?php $get_ethnicities =  $db->query("SELECT * FROM ethnicities"); 
+                                    while($row = $get_ethnicities->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['ethnicity'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="input-group">
@@ -273,24 +272,18 @@ else
                         <div class="input-group-addon">No.of Brothers <span style="color:red">*</span></div>
                         <select class="form-control" name="no_brothers">
                             <option value="">-- No.of Brothers --</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <?php for($i=0;$i<=5;$i++) { ?>
+                            <option value="<?=$i;?>" <?php if($user_info['no_of_brothers'] == $i) { echo 'selected';}?> ><?=$i;?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">No.of Sisters   <span style="color:red">*</span></div>
                         <select class="form-control " name="no_sisters">
                             <option value="">-- No.of Sisters --</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <?php for($i=0;$i<=5;$i++) { ?>
+                            <option value="<?=$i;?>" <?php if($user_info['no_of_sisters'] == $i) { echo 'selected';}?> ><?=$i;?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -298,27 +291,31 @@ else
                     <h3 style="color: #ed3237;"><i class="fa fa-gear"></i> Life Style</h3>
                     <div class="input-group">
                         <div class="input-group-addon">Eating Habits   <span style="color:red">*</span></div>
-                        <label style="padding-left:30px;"><input type="radio" name="eating_habits" id="vegetarian" value="Vegetarian" checked=""> Vegetarian</label>&nbsp;&nbsp;
-                        <label><input type="radio" name="eating_habits" id="non_vegetarian" value="Non vegetarian"> Non Vegetarian</label>&nbsp;&nbsp;
-                        <label><input type="radio" name="eating_habits" id="eggetarian" value="Eggetarian"> Eggetarian</label>&nbsp;&nbsp;
-                        <label><input type="radio" name="eating_habits" id="vegan" value="Vegan"> Vegan</label>
+                        <?php $get_eating_habits =  $db->query("SELECT * FROM eating_habits"); 
+                            while($row = $get_eating_habits->fetch()) { ?>
+                            <label  style="padding-left:30px;">
+                            <input type="radio" name="eating_habits" value="<?=$row['name'];?>" <?php if($user_info['eating_habits'] == $row['name']) { echo 'checked';} ?> > <?=$row['name'];?>
+                            </label>&nbsp;&nbsp;
+                        <?php } ?>
                     </div>
                     <div class="input-group">
                         <div class="input-group-addon">Drinking Habits   <span style="color:red">*</span></div>
-                        <label style="padding-left:30px;"><input type="radio" name="drinking_habits" id="non_drinker" value="Non-drinker" checked=""> Non-drinker</label>&nbsp;&nbsp;
-                        <label><input type="radio" name="drinking_habits" value="Light / Social drinker" id="l_social_drinker" value="Light / Social drinker"> Light / Social drinker</label>&nbsp;&nbsp;
-                        <label><input type="radio" name="drinking_habits" value="Regular drinker" id="regular_drinker" value="Regular drinker"> Regular drinker</label>
+                        <?php $get_eating_habits =  $db->query("SELECT * FROM drinking_habits"); 
+                            while($row = $get_eating_habits->fetch()) { ?>
+                            <label  style="padding-left:30px;">
+                            <input type="radio" name="drinking_habits" value="<?=$row['name'];?>" <?php if($user_info['drinking_habits'] == $row['name']) { echo 'checked';} ?> > <?=$row['name'];?>
+                            </label>&nbsp;&nbsp;
+                        <?php } ?>
                     </div>
                     <div class="row">
 	                    <div class="input-group-addon col-md-2">Interests <span style="color:red">*</span> </div>
 	                    &nbsp;&nbsp;
 	                    <div class="col-xs-2">
 	                        <select class="form-control" name="interests" size="8" multiple="multiple" id="interests">
-	                            <option value=""></option>
-	                            <option value="Internet Surfing"> Internet Surfing </option>
-	                            <option value="Listening to music"> Listening to music </option>
-	                            <option value="Movies"> Movies </option>
-	                            <option value="Travelling"> Travelling </option>
+                                <?php $get_interests =  $db->query("SELECT * FROM interests"); 
+                                    while($row = $get_interests->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['interests'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
 	                        </select>
 	                    </div>
 	                    <div class="col-md-1" style="width: 29px;margin-top: 70px;">
@@ -329,7 +326,7 @@ else
 						    </select>
 					  	</div>
 	                </div>
-	                <div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="interests_error">Please choose interests</label>
@@ -339,10 +336,10 @@ else
 	                    &nbsp;&nbsp;
 	                    <div class="col-xs-2">
 	                        <select class="form-control" name="hobbies" size="8" multiple="multiple" id="hobbies">
-	                            <option value="Art/Handcraft">Art/Handcraft</option>
-	                            <option value="Cooking">Cooking</option>
-	                            <option value="Dancing">Dancing</option>
-	                            <option value="Gardening">Gardening</option>
+                                <?php $get_hobbies =  $db->query("SELECT * FROM hobbies"); 
+                                    while($row = $get_hobbies->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['hobbies'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
 	                        </select>
 	                    </div>
 	                    <div class="col-md-1" style="width: 29px;margin-top: 70px;">
@@ -353,7 +350,7 @@ else
 						    </select>
 					  	</div>
 	                </div>
-	                <div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="hobbies_error">Please choose hobbies</label>
@@ -367,9 +364,10 @@ else
                     
 	                    <div class="col-xs-2">
 	                        <select id="music" class="form-control" size="8" multiple="multiple" name="music">
-	                            <option value="Film Songs"> Film Songs </option>
-	                            <option value="Indian classical music"> Indian classical music </option>
-	                            <option value="Western music"> Western music </option>
+                                <?php $get_music =  $db->query("SELECT * FROM music"); 
+                                    while($row = $get_music->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['music'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
 	                        </select>
 	                    </div>
 	                    <div class="col-md-1" style="width: 29px;margin-top: 70px;">
@@ -380,7 +378,7 @@ else
 						    </select>
 					  	</div>
                 	</div>
-                    <div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="music_error">Please choose music</label>
@@ -390,11 +388,10 @@ else
 	                    &nbsp;&nbsp;
 	                    <div class="col-xs-2">
 	                        <select name="sports" id="sports" class="form-control" size="8" multiple="multiple">
-	                            <option value="Badminton">Badminton</option>
-	                            <option value="Carrom">Carrom</option>
-	                            <option value="Chess">Chess</option>
-	                            <option value="Cricket">Cricket</option>
-	                            <option value="Co Co">Co Co</option>
+                                <?php $get_music =  $db->query("SELECT * FROM sports"); 
+                                    while($row = $get_music->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['sports'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
 	                        </select>
 	                    </div>
 	                    <div class="col-md-1" style="width: 29px;margin-top: 70px;">
@@ -405,7 +402,7 @@ else
 						    </select>
 					  	</div>
                 	</div>
-                	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="sports_error">Please choose sports</label>
@@ -415,11 +412,10 @@ else
 	                    &nbsp;&nbsp;
 	                    <div class="col-xs-2">
 						    <select name="food" id="food" class="form-control" size="8" multiple="multiple">
-	                            <option value="Arabic">Arabic</option>
-	                            <option value="Bengali">Bengali</option>
-	                            <option value="Chines">Chines</option>
-	                            <option value="Continental">Continental</option>
-	                            <option value="Indian">Indian</option>
+                                <?php $get_food =  $db->query("SELECT * FROM food"); 
+                                    while($row = $get_food->fetch()) { ?>
+                            <option value="<?=$row['name'];?>" <?php if($user_info['food'] == $row['name']) { echo 'selected';}?> ><?=$row['name'];?></option>
+                            <?php } ?>
 						    </select>
 					  	</div>
 					  	<div class="col-md-1" style="width: 29px;margin-top: 70px;">
@@ -430,7 +426,7 @@ else
 						    </select>
 					  	</div>
 				  	</div>
-				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px">Double click on the values to select</label>
 				  	<div class="col-xs-2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				  	<label style="font-size: 10px;color: red;display:none" id="food_error">Please choose food</label>
@@ -467,11 +463,16 @@ else
                 success : function(response)
                 {
                     var response =JSON.parse(response);
+                    // window.test = response;
                     if(response['status']=='success')
                     {
+                        data = response["data"];
+                        $('#city').find('option').remove();
                         for(var i=0;i<=response['data'].length;i++)
                         {
-                            $('#city').append('<option value="'+response["data"][i]["name"]+'">'+response["data"][i]["name"]+'</option>');
+                            // window.test = response["data"]
+                            $('#city').append('<option value="'+data[i]['name']+'">'+data[i]['name']+'</option>');
+                            // break;
                         }
                     }
                 }
@@ -799,14 +800,14 @@ else
                 	var response =JSON.parse(response);
                     if(response['status']=='success')
                     {
-                        window.location = '<?php echo URL_VIEW ?>register_step2.php';
+                        window.location = '<?php echo URL_VIEW ?>image_uploads.php';
                     }
                     else
                     {
                         $('#err_msg_step_2').addClass('lv-alert alert-danger');
                         $('#err_msg_step_2').text(response['msg']);
                         window.parent.scrollTo(0,0);
-                        $('#err_msg_step_2')[0].focus();
+                        // $('#err_msg_step_2')[0].focus();
                     }
                 }
             })

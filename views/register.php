@@ -365,6 +365,7 @@ $('#reg_form').validate({
             changeYear: true,
             dateFormat: "dd-mm-yy",
             maxDate: new Date,
+            yearRange: '1970:'+(new Date).getFullYear()
         });
 		var owl = $('.matcheRecievedsall');
 		owl.owlCarousel({
