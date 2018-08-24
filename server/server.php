@@ -145,7 +145,7 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 			if($update_qry)
 			{
 				// Sent sms code here
-				$msg = 'Redcarpet OTP: '.$otp;
+				$msg = 'Your Redcarpet verification code is '.$otp;
 				$url = "http://smslogin.mobi/spanelv2/api.php?username=redcarpetevents&password=2klikes&to=".$_POST['mobile']."&from=RCEMMS&message=".urlencode($msg); 
 				$ret = file($url);
 				if($ret[0])
@@ -169,7 +169,7 @@ if(isset($_POST) && $_POST['action']== 'register_step1')
 		if($insert_qry)
 		{
 			//Sent sms code here
-			$msg = 'Redcarpet OTP: '.$otp;
+			$msg = 'Your Redcarpet verification code is '.$otp;
 			$url = "http://smslogin.mobi/spanelv2/api.php?username=redcarpetevents&password=2klikes&to=".$_POST['mobile']."&from=RCEMMS&message=".urlencode($msg); 
 			$ret = file($url);
 			if($ret[0])
@@ -354,12 +354,12 @@ if(isset($_POST) && $_POST['action']== 'upload_images')
 		}
 		if($con ==1)
 		{
-			echo json_encode(array('status'=>'error','msg'=>'Please upload atleast one image'));
+			echo json_encode(array('status'=>'error','msg'=>'Nothing to update'));
 		}
 	}
 	else
 	{
-		echo json_encode(array('status'=>'error','msg'=>'Please upload atleast one image'));
+		echo json_encode(array('status'=>'error','msg'=>'Nothing to update'));
 	}
 
 }

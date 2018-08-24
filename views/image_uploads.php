@@ -1,4 +1,6 @@
-<?php include "inner_header.php";?>
+<?php include "inner_header.php";
+$old_images = array();
+?>
 <script src=" https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 var jQuery2_1_3 = $.noConflict(true);
@@ -11,10 +13,10 @@ var jQuery2_1_3 = $.noConflict(true);
 	<br><br><br><br><br>
 <style type="text/css">
     
-    #cropContainerModal_1{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
-    #cropContainerModal_2{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
-    #cropContainerModal_3{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
-    #cropContainerModal_4{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
+    #cropContainerModal_1,#cropContainerPreload_1{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
+    #cropContainerModal_2,#cropContainerPreload_2{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
+    #cropContainerModal_3,#cropContainerPreload_3{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
+    #cropContainerModal_4,#cropContainerPreload_4{ width:46%; height:220px; border:1px solid #ccc;margin: 20px}
 </style>	
 	 
 	 <section class="container-full theme-bg-panel col-xs-12">
@@ -29,21 +31,43 @@ var jQuery2_1_3 = $.noConflict(true);
             <div class="padd-60"> 
             <div id="err_msg_img"></div>  
                 <div class="row">
-                    <div class="col-sm-8" id="cropContainerModal_1">
-                        <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
-                    </div>
-                    <div class="col-sm-8" id="cropContainerModal_2">
-                        <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
-                    </div>
-                    
-                </div> 
-                <div class="row">
-                    <div class="col-sm-8" id="cropContainerModal_3">
-                        <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
-                    </div>
-                    <div class="col-sm-8" id="cropContainerModal_4">
-                        <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
-                    </div>
+                    <?php 
+                    $get_images = $db->query("SELECT * FROM profile_images WHERE uid=".$_SESSION['id']);
+                    $count = $get_images->rowCount();
+                    if($count > 0 )
+                    {
+                        $i=1;
+                        while($row = $get_images->fetch())
+                        {
+
+                        ?>
+                        <div class="col-sm-8" id="cropContainerModal_<?=$i;?>">
+                            <?php 
+
+                            if(isset($row['image']) && $row['image']!='') 
+                            { 
+                                $d['id'] = "cropContainerModal_$i";
+                                $d['image'] = $row['image'];
+                                array_push($old_images, $d);
+                                ?>
+                                <img style="width:100%; height:220px;" src="<?=URL;?>adminupload/<?=$row['image'];?>" id="img_id_<?=$i;?>">
+                            <?php } else { ?>
+                            <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
+                        <?php } $i++;?>
+                        </div>
+                        <?php }
+                        print_r($old_images);
+                        // exit;
+                    }
+                    else
+                    {
+                        for($i=1;$i<=4;$i++) { ?>
+                        <div class="col-sm-8" id="cropContainerModal_<?=$i;?>">
+                            <img style="width:100%; height:220px;" src="<?php echo URL;?>assets/images/default_upload.png">
+                        </div>
+                        <?php }
+                    }
+                     ?>
                 </div>
             </div>
 	       <div class="plan-register-section">
@@ -57,6 +81,16 @@ var jQuery2_1_3 = $.noConflict(true);
 </div>
 <?php require 'footer.php'; ?> 
 <script type="text/javascript">
+    var ss ='<?php echo json_encode($old_images);?>';
+    alert(ss)
+    $('.cropControlsUpload').on('click',function(){
+        alert(1)
+        alert($(this).closest('div').attr('id'))
+    });
+    function test()
+    {
+        alert(1)
+    }
     var images=[];
     var final_images =[];
     var remove_images =[];
@@ -84,6 +118,8 @@ var jQuery2_1_3 = $.noConflict(true);
                     if (found >= 0) {
                     } else {
                         // Element was not found, add it.
+                        window.test = response;
+                        console.log(response);
                         final_images.push(response.url);
                     }
                     
@@ -103,6 +139,48 @@ var cropContainerModal_2 = new Croppic('cropContainerModal_2', croppicContainerM
 var cropContainerModal_3 = new Croppic('cropContainerModal_3', croppicContainerModalOptions);     
 var cropContainerModal_4 = new Croppic('cropContainerModal_4', croppicContainerModalOptions);     
 
+// var croppicContainerPreloadOptions = {
+//                 uploadUrl:'img_save_to_file.php',
+//                 cropUrl:'img_crop_to_file.php',
+//                 // loadPicture:'assets/img/night.jpg',
+//                 enableMousescroll:true,
+//                 loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+//                 onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+//                 onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+//                 onImgDrag: function(){ console.log('onImgDrag') },
+//                 onImgZoom: function(){ console.log('onImgZoom') },
+//                 onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+//                 onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
+//                 onReset:function(){ console.log('onReset') },
+//                 onError:function(errormessage){ console.log('onError:'+errormessage) }
+//         }
+//         if('<?=$count;?>' > 0)
+//         {
+//             var count = parseInt('<?=$count;?>');
+//             switch(count) 
+//             {
+//                 case 1:
+//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
+//                     break;
+//                 case 2:
+//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
+//                     break;
+//                 case 3:
+//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_3 = new Croppic('cropContainerPreload_3', croppicContainerPreloadOptions);
+//                     break;
+//                 case 4:
+//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_3 = new Croppic('cropContainerPreload_3', croppicContainerPreloadOptions); 
+//                     var cropContainerPreload_4 = new Croppic('cropContainerPreload_4', croppicContainerPreloadOptions); 
+//                     break;
+                
+//             }
+//         }
+    
 
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;

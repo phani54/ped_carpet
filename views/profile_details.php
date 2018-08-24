@@ -447,11 +447,53 @@ else
 
 <!-- Bootstrap core JavaScript  ================================================== -->
 <script type="text/javascript">
+    
     if('<?php echo $user_info['languages_known']?>' !='')
     {
         var values='<?php echo $user_info['languages_known']?>';
         $.each(values.split(","), function(i,e){
-            $("#languages_known option[value='" + e + "']").prop("selected", true);
+            $("#languages_known option[value='"+e.trim()+"']").remove();
+            $("#languages_known_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
+        });
+    }
+    if('<?php echo $user_info['interests']?>' !='')
+    {
+        var values='<?php echo $user_info['interests']?>';
+        $.each(values.split(","), function(i,e){
+            $("#interests option[value='"+e.trim()+"']").remove();
+            $("#interests_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
+        });
+    }
+    if('<?php echo $user_info['hobbies']?>' !='')
+    {
+        var values='<?php echo $user_info['hobbies']?>';
+        $.each(values.split(","), function(i,e){
+            $("#hobbies option[value='"+e.trim()+"']").remove();
+            $("#hobbies_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
+        });
+    }
+    if('<?php echo $user_info['music']?>' !='')
+    {
+        var values='<?php echo $user_info['music']?>';
+        $.each(values.split(","), function(i,e){
+            $("#music option[value='"+e.trim()+"']").remove();
+            $("#music_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
+        });
+    }
+    if('<?php echo $user_info['sports']?>' !='')
+    {
+        var values='<?php echo $user_info['sports']?>';
+        $.each(values.split(","), function(i,e){
+            $("#sports option[value='"+e.trim()+"']").remove();
+            $("#sports_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
+        });
+    }
+    if('<?php echo $user_info['food']?>' !='')
+    {
+        var values='<?php echo $user_info['food']?>';
+        $.each(values.split(","), function(i,e){
+            $("#food option[value='"+e.trim()+"']").remove();
+            $("#food_to").append('<option value="'+e.trim()+'">'+e.trim()+'</option>')
         });
     }
     $("#state").on('change',function(){
@@ -530,9 +572,6 @@ else
 			education:{
 				required:true,
 			},
-			languages_known:{
-				required:true,
-			},
 			employed_in:{
 				required:true,
 			},
@@ -573,21 +612,6 @@ else
 				required:true,
 			},
 			drinking_habits:{
-				required:true,
-			},
-			interests:{
-				required:true,
-			},
-			hobbies:{
-				required:true,
-			},
-			music:{
-				required:true,
-			},
-			sports:{
-				required:true,
-			},
-			food:{
 				required:true,
 			},
 			about:{
@@ -637,10 +661,6 @@ else
 			education:{
 				required:"Please choose education",
 			},
-			languages_known:{
-				required:"Please choose languages",
-				// SelectName: { combo_checker: "Please select an item!" }
-			},
 			employed_in:{
 				required:"Please choose one",
 			},
@@ -682,21 +702,6 @@ else
 			},
 			drinking_habits:{
 				required:"Please choose drinking habits",
-			},
-			interests:{
-				required:"Please choose interests",
-			},
-			hobbies:{
-				required:"Please choose hobbies",
-			},
-			music:{
-				required:"Please choose music",
-			},
-			sports:{
-				required:"Please choose sports",
-			},
-			food:{
-				required:"Please choose food habits",
 			},
 			about:{
 				required:"Please write something about you",
@@ -742,6 +747,7 @@ else
 			{
 				$('#languages_known_error').show();
 				$('#languages_known')[0].focus();
+                return false;
 			}
 			if(interests.length > 0)
 			{
@@ -751,6 +757,7 @@ else
 			{
 				$('#interests_error').show();
 				$('#interests')[0].focus();
+                return false;
 			}
 			if(hobbies.length > 0)
 			{
@@ -760,6 +767,7 @@ else
 			{
 				$('#hobbies_error').show();
 				$('#hobbies')[0].focus();
+                return false;
 			}
 			if(music.length > 0)
 			{
@@ -769,6 +777,7 @@ else
 			{
 				$('#music_error').show();
 				$('#music')[0].focus();
+                return false;
 			}
 			if(sports.length > 0)
 			{
@@ -778,6 +787,7 @@ else
 			{
 				$('#sports_error').show();
 				$('#sports')[0].focus();
+                return false;
 			}
 			if(food.length > 0)
 			{
@@ -787,6 +797,7 @@ else
 			{
 				$('#food_error').show();
 				$('#food')[0].focus();
+                return false;
 			}
 			
         	var data = $('#complete_profile').serialize();
@@ -807,18 +818,11 @@ else
                         $('#err_msg_step_2').addClass('lv-alert alert-danger');
                         $('#err_msg_step_2').text(response['msg']);
                         window.parent.scrollTo(0,0);
-                        // $('#err_msg_step_2')[0].focus();
                     }
                 }
             })
         }
     });
-    // $('#languages_known').multiSelect();
-    // $('#hobbies').multiSelect();
-    // $('#interests').multiSelect();
-    // $('#food').multiSelect();
-    // $('#sports').multiSelect();
-    // $('#music').multiSelect();
        $(document).ready(function () {
            NewAccount.Screen.Self.init()        
            Account.Screen.ReligionCaste.init()
