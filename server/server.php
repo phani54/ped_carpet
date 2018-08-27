@@ -330,8 +330,8 @@ if(isset($_POST) && $_POST['action']== 'upload_images')
 		$con =0;
 		if(isset($_POST['remove_images']))
 		{
-			for ($i=0; $i< sizeof($_POST['remove_images']); $i++) { 
-
+			for ($i=0; $i< sizeof($_POST['remove_images']); $i++) 
+			{ 
 				unlink('../views/'.$_POST['remove_images'][$i]);
 			}
 			$con = 1;
@@ -347,7 +347,28 @@ if(isset($_POST) && $_POST['action']== 'upload_images')
 			    $date=new DateTime( date('Y-m-d H:i:s.'.$micro_time,$time) );
 			    $newname = $date->format("YmdHisu").'.'.$extension;
 				$r = rename('../views/'.$_POST['final_images'][$i], '../adminupload/'.$newname);
-				$db->query("INSERT profile_images(uid,image)VALUES('".$_SESSION['id']."','".$newname."')");
+				if(isset($_POST['update_divs']))
+				{
+					$db_images =(array) json_decode($_POST['db_images']);
+					foreach($_POST['update_divs'] AS $row)
+					{
+						foreach ($db_images as $key) 
+						{
+							if($row == $key->id)
+							{
+								$r = $db->query("UPDATE `profile_images` SET image='".$newname."' WHERE uid='".$_SESSION['id']."' AND image='".$key->image."'");
+								if($r)
+								{
+									unlink('../adminupload/'.$key->image);
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					$db->query("INSERT profile_images(uid,image)VALUES('".$_SESSION['id']."','".$newname."')");
+				}
 			}
 			$con = 2;
 			echo json_encode(array('status'=>'success'));

@@ -703,13 +703,15 @@
                 that.destroy();
 				
                 that.obj.append('<img class="croppedImg" src="' + response.url + '">');
-                if (that.options.outputUrlId !== '') { $('#' + that.options.outputUrlId).val(response.url); }
+                if (that.options.outputUrlId !== '') { $('#' + that.options.outputUrlId).val(response.url); response.div_id =  '#' + that.options.outputUrlId;}
 
                 that.croppedImg = that.obj.find('.croppedImg');
 
                 that.init();
 
                 that.hideLoader();
+                response.div_id =that.id;
+                // console.log(that.id)
 		    }
             if (response.status == 'error') {
                 if (that.options.onError) that.options.onError.call(that,response.message);

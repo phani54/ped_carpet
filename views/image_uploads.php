@@ -1,14 +1,11 @@
 <?php include "inner_header.php";
 $old_images = array();
+$db_img_flag = 0;
 ?>
 <script src=" https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 var jQuery2_1_3 = $.noConflict(true);
-// var nav = $('.content-nav');
-// if (nav.length) {
-//   var contentNav = nav.offset().top;
 
-// }
 </script>
 	<br><br><br><br><br>
 <style type="text/css">
@@ -32,10 +29,18 @@ var jQuery2_1_3 = $.noConflict(true);
             <div id="err_msg_img"></div>  
                 <div class="row">
                     <?php 
-                    $get_images = $db->query("SELECT * FROM profile_images WHERE uid=".$_SESSION['id']);
-                    $count = $get_images->rowCount();
+                    if($session_flag == 1)
+                    {
+                        $get_images = $db->query("SELECT * FROM profile_images WHERE uid=".$_SESSION['id']);
+                        $count = $get_images->rowCount();
+                    }
+                    else
+                    {
+                        $count = 0;
+                    }
                     if($count > 0 )
                     {
+                        $db_img_flag = 1;
                         $i=1;
                         while($row = $get_images->fetch())
                         {
@@ -56,8 +61,6 @@ var jQuery2_1_3 = $.noConflict(true);
                         <?php } $i++;?>
                         </div>
                         <?php }
-                        print_r($old_images);
-                        // exit;
                     }
                     else
                     {
@@ -81,19 +84,13 @@ var jQuery2_1_3 = $.noConflict(true);
 </div>
 <?php require 'footer.php'; ?> 
 <script type="text/javascript">
-    var ss ='<?php echo json_encode($old_images);?>';
-    alert(ss)
-    $('.cropControlsUpload').on('click',function(){
-        alert(1)
-        alert($(this).closest('div').attr('id'))
-    });
-    function test()
-    {
-        alert(1)
-    }
-    var images=[];
-    var final_images =[];
-    var remove_images =[];
+    var flag = '<?php echo $db_img_flag;?>';
+    var db_images = '';
+    if(flag == 1)
+        db_images = '<?php echo json_encode($old_images);?>';
+    var final_images = [];
+    var remove_images = [];
+    var update_divs = [];
     var croppicContainerModalOptions = {
                 uploadUrl:'img_save_to_file.php',
                 cropUrl:'img_crop_to_file.php',
@@ -108,7 +105,8 @@ var jQuery2_1_3 = $.noConflict(true);
                         // Element was not found, add it.
                         remove_images.push(response.url);
                     }
-                    console.log('onAfterImgUpload')
+                    
+                    console.log('onAfterImgUpload');
                 },
                 onImgDrag: function(){ console.log('onImgDrag') },
                 onImgZoom: function(){ console.log('onImgZoom') },
@@ -122,7 +120,12 @@ var jQuery2_1_3 = $.noConflict(true);
                         console.log(response);
                         final_images.push(response.url);
                     }
-                    
+                    var found_div = jQuery.inArray(response.div_id, update_divs);
+                    if (found_div >= 0) {
+                    } else {
+                        // Element was not found, add it.
+                        update_divs.push(response.div_id);
+                    }
                     console.log('onAfterImgCrop') },
                 onReset:function(){ console.log('onReset') },
                 onAfterRemoveCroppedImg:function(){
@@ -139,79 +142,39 @@ var cropContainerModal_2 = new Croppic('cropContainerModal_2', croppicContainerM
 var cropContainerModal_3 = new Croppic('cropContainerModal_3', croppicContainerModalOptions);     
 var cropContainerModal_4 = new Croppic('cropContainerModal_4', croppicContainerModalOptions);     
 
-// var croppicContainerPreloadOptions = {
-//                 uploadUrl:'img_save_to_file.php',
-//                 cropUrl:'img_crop_to_file.php',
-//                 // loadPicture:'assets/img/night.jpg',
-//                 enableMousescroll:true,
-//                 loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
-//                 onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
-//                 onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
-//                 onImgDrag: function(){ console.log('onImgDrag') },
-//                 onImgZoom: function(){ console.log('onImgZoom') },
-//                 onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
-//                 onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
-//                 onReset:function(){ console.log('onReset') },
-//                 onError:function(errormessage){ console.log('onError:'+errormessage) }
-//         }
-//         if('<?=$count;?>' > 0)
-//         {
-//             var count = parseInt('<?=$count;?>');
-//             switch(count) 
-//             {
-//                 case 1:
-//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
-//                     break;
-//                 case 2:
-//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
-//                     break;
-//                 case 3:
-//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_3 = new Croppic('cropContainerPreload_3', croppicContainerPreloadOptions);
-//                     break;
-//                 case 4:
-//                     var cropContainerPreload_1 = new Croppic('cropContainerPreload_1', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_2 = new Croppic('cropContainerPreload_2', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_3 = new Croppic('cropContainerPreload_3', croppicContainerPreloadOptions); 
-//                     var cropContainerPreload_4 = new Croppic('cropContainerPreload_4', croppicContainerPreloadOptions); 
-//                     break;
-                
-//             }
-//         }
-    
 
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }
-    }
-    return this;
-};
+// Array.prototype.remove = function() {
+//     var what, a = arguments, L = a.length, ax;
+//     while (L && this.length) 
+//     {
+//         what = a[--L];
+//         while ((ax = this.indexOf(what)) !== -1) 
+//         {
+//             this.splice(ax, 1);
+//         }
+//     }
+//     return this;
+// };
 $('#upload_now').on('click',function(){
     $.ajax({
-                url: "<?php echo URL?>server/server.php",
-                data: {final_images:final_images,remove_images:remove_images,action:'upload_images'},
-                type:'POST',
-                datatype:'json',
-                success : function(response)
-                {
-                    var response =JSON.parse(response);
-                    if(response['status']=='success')
-                    {
-                        window.location = '<?php echo URL_VIEW;?>register_step2.php';
-                    }
-                    else
-                    {
-                        $('#err_msg_img').addClass('lv-alert alert-danger');
-                        $('#err_msg_img').text(response['msg']);
-                        window.parent.scrollTo(0,0);
-                    }
-                }
-            })
+        url: "<?php echo URL?>server/server.php",
+        data: {final_images:final_images,remove_images:remove_images,update_divs:update_divs,db_images:db_images,action:'upload_images'},
+        type:'POST',
+        datatype:'json',
+        success : function(response)
+        {
+            var response =JSON.parse(response);
+            if(response['status']=='success')
+            {
+                window.location = '<?php echo URL_VIEW;?>register_step2.php';
+            }
+            else
+            {
+                $('#err_msg_img').addClass('lv-alert alert-danger');
+                $('#err_msg_img').text(response['msg']);
+                window.parent.scrollTo(0,0);
+            }
+        }
+    })
 })
 </script>
