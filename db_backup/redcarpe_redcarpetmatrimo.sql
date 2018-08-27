@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2018 at 03:02 PM
+-- Generation Time: Aug 27, 2018 at 07:38 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -48516,6 +48516,27 @@ INSERT INTO `cities1` (`guid`, `cid`, `sid`, `name`, `dateandtime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `citizenships`
+--
+
+CREATE TABLE `citizenships` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `citizenships`
+--
+
+INSERT INTO `citizenships` (`id`, `name`, `created_on`, `status`) VALUES
+(1, 'India', '2018-08-22 11:45:00', 1),
+(2, 'Iran', '2018-08-22 11:45:00', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `complexions`
 --
 
@@ -48903,6 +48924,187 @@ INSERT INTO `division` (`guid`, `sid`, `name`, `dateandtime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `drinking_habits`
+--
+
+CREATE TABLE `drinking_habits` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `drinking_habits`
+--
+
+INSERT INTO `drinking_habits` (`id`, `name`, `created_on`) VALUES
+(1, 'Non-drinker', '2018-08-22 12:43:45'),
+(2, 'Light / Social drinker', '2018-08-22 12:44:11'),
+(3, 'Regular drinker', '2018-08-22 12:44:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eating_habits`
+--
+
+CREATE TABLE `eating_habits` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `eating_habits`
+--
+
+INSERT INTO `eating_habits` (`id`, `name`, `created_on`) VALUES
+(1, 'Vegetarian', '2018-08-22 12:42:50'),
+(2, 'Non Vegetarian', '2018-08-22 12:42:58'),
+(3, 'Eggetarian', '2018-08-22 12:43:27'),
+(4, 'Vegan', '2018-08-22 12:43:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education`
+--
+
+CREATE TABLE `education` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `creatd_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`id`, `name`, `creatd_on`) VALUES
+(1, 'BCA', '2018-08-22 12:04:18'),
+(2, 'B.Arch', '2018-08-22 12:04:18'),
+(3, 'B.Plan', '2018-08-22 12:07:49'),
+(4, 'B.E', '2018-08-22 12:07:49'),
+(5, 'B.Tech', '2018-08-22 12:11:09'),
+(6, 'B.Sc', '2018-08-22 12:07:49'),
+(7, 'Any Master in Engineering / Computers', '2018-08-22 12:07:49'),
+(8, 'M.Arch', '2018-08-22 12:07:49'),
+(9, 'M.E', '2018-08-22 12:07:49'),
+(10, 'M.Tech', '2018-08-22 12:08:20'),
+(11, 'M.Sc', '2018-08-22 12:08:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ethnicities`
+--
+
+CREATE TABLE `ethnicities` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ethnicities`
+--
+
+INSERT INTO `ethnicities` (`id`, `name`, `created_on`) VALUES
+(1, 'African', '2018-08-22 12:35:57'),
+(2, 'Caribben', '2018-08-22 12:35:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `family_values`
+--
+
+CREATE TABLE `family_values` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `family_values`
+--
+
+INSERT INTO `family_values` (`id`, `name`, `created_on`) VALUES
+(1, 'Orthodox', '2018-08-22 12:27:18'),
+(2, 'Traditional', '2018-08-22 12:27:27'),
+(3, 'Moderate', '2018-08-22 12:24:55'),
+(4, 'Liberal', '2018-08-22 12:24:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food`
+--
+
+CREATE TABLE `food` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food`
+--
+
+INSERT INTO `food` (`id`, `name`, `created_on`) VALUES
+(1, 'Arabic', '2018-08-22 12:55:57'),
+(2, 'Bengali', '2018-08-22 12:56:03'),
+(3, 'Chines', '2018-08-22 12:56:11'),
+(4, 'Continental', '2018-08-22 12:56:17'),
+(5, 'Indian', '2018-08-22 13:00:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hobbies`
+--
+
+CREATE TABLE `hobbies` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hobbies`
+--
+
+INSERT INTO `hobbies` (`id`, `name`, `created_on`) VALUES
+(1, 'Art/Handcraft', '2018-08-22 12:52:34'),
+(2, 'Cooking', '2018-08-22 12:52:40'),
+(3, 'Dancing', '2018-08-22 12:52:46'),
+(4, 'Gardening', '2018-08-22 12:52:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interests`
+--
+
+CREATE TABLE `interests` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `interests`
+--
+
+INSERT INTO `interests` (`id`, `name`, `created_on`) VALUES
+(1, 'Internet Surfing', '2018-08-22 12:51:10'),
+(2, 'Listening to music', '2018-08-22 12:51:18'),
+(3, 'Movies', '2018-08-22 12:51:25'),
+(4, 'Travelling', '2018-08-22 12:51:25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `languages`
 --
 
@@ -49147,6 +49349,27 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`guid`, `name`, `username`, `password`, `securitykey`, `email`, `date`, `role`, `status`, `dateandtime`, `centername`) VALUES
 (1, 'Super Admin', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '5a09851866dfe', 'phanikumar.allanki@gmail.com', '2014-12-09', 'superadmin', 'Active', '2018-08-06 06:13:49', 'Matrimony Centers');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `music`
+--
+
+CREATE TABLE `music` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `music`
+--
+
+INSERT INTO `music` (`id`, `name`, `created_on`) VALUES
+(1, 'Film Songs', '2018-08-22 12:53:45'),
+(2, 'Indian classical music', '2018-08-22 12:53:53'),
+(3, 'Western music', '2018-08-22 12:54:00');
 
 -- --------------------------------------------------------
 
@@ -49523,7 +49746,30 @@ INSERT INTO `profiles` (`id`, `profile_id`, `profile_for`, `name`, `gender`, `im
 (106, 'RCM500237', 'Son', 'K.Ravi varma', 'Male', '1533208511_20180802_150555.jpg', 7, 4, 1983, 35, '1983-04-07', 'Unmarried', '14', 'Church of South India(C.S.I)', '', 'Telugu', '', '', '', 'USA', 'USA', '', '9989378927', '', 'ravivarmarcm@gmail.com', 'ravi1234', '', '5ft 7in / 170 cms', '', '', '', '', 0, '', '', 'MS', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (107, 'RCM500238', 'Daughter', 'PRISCILLA ROSE', 'Female', '1533208568_20180802_164125.jpg', 9, 7, 1990, 28, '1990-07-09', 'Unmarried', '14', ' Others', '', 'Telugu', '', '', '', 'SECUNDERBAD', 'madhuranagar colony,Neredmet', '', '9703848185', '', 'priscillarcm@gmail.com', 'rose123', '', '5ft 3in / 160 cms', '', '', '', '', 0, '', '', 'Masters-Degree', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
 (108, 'RCM500239', 'Daughter', 'PATRICIA', 'Female', '1533209030_20180802_165206.jpg', 16, 12, 1991, 26, '1991-12-16', 'Unmarried', '14', 'Roman Catholic', '', 'Telugu', '', '', '', 'SECUNDERBAD', 'modis compound', '', '8897914257', '', 'ptriciarcm@gmail.com', 'pat1234', '', '5ft 7in / 169 cms', '', '', '', '', 0, '', '', 'B.A', '', 'Employed', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 1, '1', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-16 09:44:02', 0, 0, '0000-00-00 00:00:00', 0, 0),
-(110, 'RCM521320', 'Relative', 'phani', 'Male', '', 22, 8, 1989, 29, '1989-08-22', 'Unmarried', 'Muslim', 'Church of South India(C.S.I)', 'Adventist', 'Aymara', 'India', '91', 'Andhra Pradesh', 'Port Blair', '', 'India', '9701339351', '9701339351', 'phanikumar.allanki@gmail.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', '5 Feet 2 Inches', '65 Kg', 'Average', 'White Brown', 'Physically Challenged', 1, 'Believe in Jesus not in religion', 'Others', 'B.Arch', 'Amharic, Assamese, English', 'Private', 'Software', '4 - 5 Lakhs', 'Moderate', 'Joint Family', 'Rich / Affluent', 'bussiness', 'House wife', 3, 2, 'Eggetarian', 'Regular drinker', 'Listening to music, Travelling', 'Dancing, Gardening', 'Indian classical music, Western music', 'Chess, Co Co', 'Chines, Indian', 'Caribben', 'About about about', 923666, 1, '', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-21 11:47:18', 0, 0, '0000-00-00 00:00:00', 0, 0);
+(111, 'RCM485848', 'Relative', 'Phani Kumar', 'Male', '', 27, 11, 1989, 29, '1989-11-27', 'Unmarried', 'Hindu', 'Protestant', 'Anglican / Episcopal', 'Telugu', 'India', '91', 'Andhra Pradesh', 'Tuni', '', 'Iran', '9701339351', '9900000000', 'phanikumar.allanki@gmail.com', '123456', 'e10adc3949ba59abbe56e057f20f883e', '5 Feet 5 Inches', '75 Kg', 'Average', 'White Brown', 'Normal', 1, 'Believe in Jesus not in religion', 'Christian', 'B.Tech', 'English, Telugu', 'Private', 'Software', '5 - 6 Lakhs', 'Moderate', 'Nuclear Family', 'Middle Class', 'Business', 'House wife', 1, 1, 'Non Vegetarian', 'Light / Social drinker', 'Internet Surfing, Movies, Travelling', 'Art/Handcraft, Cooking', 'Film Songs, Western music', 'Chess, Co Co', 'Continental, Indian', 'African', 'About About me', 120935, 1, '0', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', '2018-08-23 05:43:30', 0, 0, '0000-00-00 00:00:00', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile_images`
+--
+
+CREATE TABLE `profile_images` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `image` varchar(150) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `profile_images`
+--
+
+INSERT INTO `profile_images` (`id`, `uid`, `image`, `created_on`) VALUES
+(1, 111, '20180823103844222639.jpeg', '2018-08-23 05:08:44'),
+(2, 111, '20180823103844281244.jpeg', '2018-08-23 05:08:44'),
+(3, 111, '20180823103844339482.jpeg', '2018-08-23 05:08:44'),
+(5, 111, '20180823115631392364.jpeg', '2018-08-23 06:26:31');
 
 -- --------------------------------------------------------
 
@@ -49872,6 +50118,26 @@ INSERT INTO `religions` (`guid`, `name`, `dateandtime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `religious_values`
+--
+
+CREATE TABLE `religious_values` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `religious_values`
+--
+
+INSERT INTO `religious_values` (`id`, `name`) VALUES
+(1, 'Very religious'),
+(2, 'Believe in Jesus not in religion'),
+(3, 'Sunday Church Goer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sms_templates`
 --
 
@@ -49890,6 +50156,29 @@ INSERT INTO `sms_templates` (`id`, `title`, `content`, `created_on`) VALUES
 (1, 'register', 'Hi &user_name& Congratulations, You have registered', '2018-08-06 07:37:20'),
 (2, 'Login', 'Login from here and there', '2018-08-06 07:37:50'),
 (3, 'jrtjurtjn', 'gfhfghfghfg', '2018-08-08 05:28:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sports`
+--
+
+CREATE TABLE `sports` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sports`
+--
+
+INSERT INTO `sports` (`id`, `name`, `created_on`) VALUES
+(1, 'Badminton', '2018-08-22 12:54:52'),
+(2, 'Carrom', '2018-08-22 12:54:58'),
+(3, 'Chess', '2018-08-22 12:55:04'),
+(4, 'Cricket', '2018-08-22 12:54:58'),
+(5, 'Co Co', '2018-08-22 12:55:04');
 
 -- --------------------------------------------------------
 
@@ -54153,6 +54442,12 @@ ALTER TABLE `cities1`
   ADD PRIMARY KEY (`guid`);
 
 --
+-- Indexes for table `citizenships`
+--
+ALTER TABLE `citizenships`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `complexions`
 --
 ALTER TABLE `complexions`
@@ -54183,6 +54478,54 @@ ALTER TABLE `division`
   ADD PRIMARY KEY (`guid`);
 
 --
+-- Indexes for table `drinking_habits`
+--
+ALTER TABLE `drinking_habits`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `eating_habits`
+--
+ALTER TABLE `eating_habits`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `education`
+--
+ALTER TABLE `education`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ethnicities`
+--
+ALTER TABLE `ethnicities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `family_values`
+--
+ALTER TABLE `family_values`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `food`
+--
+ALTER TABLE `food`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hobbies`
+--
+ALTER TABLE `hobbies`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `interests`
+--
+ALTER TABLE `interests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `languages`
 --
 ALTER TABLE `languages`
@@ -54200,6 +54543,12 @@ ALTER TABLE `languages1`
 ALTER TABLE `login`
   ADD PRIMARY KEY (`guid`),
   ADD UNIQUE KEY `username` (`username`,`email`);
+
+--
+-- Indexes for table `music`
+--
+ALTER TABLE `music`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `occupations`
@@ -54235,6 +54584,12 @@ ALTER TABLE `plans`
 -- Indexes for table `profiles`
 --
 ALTER TABLE `profiles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `profile_images`
+--
+ALTER TABLE `profile_images`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -54275,9 +54630,21 @@ ALTER TABLE `religions`
   ADD PRIMARY KEY (`guid`);
 
 --
+-- Indexes for table `religious_values`
+--
+ALTER TABLE `religious_values`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sms_templates`
 --
 ALTER TABLE `sms_templates`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sports`
+--
+ALTER TABLE `sports`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -54324,7 +54691,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `body_types`
 --
 ALTER TABLE `body_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `caste`
@@ -54349,6 +54716,12 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `cities1`
   MODIFY `guid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `citizenships`
+--
+ALTER TABLE `citizenships`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `complexions`
@@ -54381,6 +54754,54 @@ ALTER TABLE `division`
   MODIFY `guid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `drinking_habits`
+--
+ALTER TABLE `drinking_habits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `eating_habits`
+--
+ALTER TABLE `eating_habits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `education`
+--
+ALTER TABLE `education`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `ethnicities`
+--
+ALTER TABLE `ethnicities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `family_values`
+--
+ALTER TABLE `family_values`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `food`
+--
+ALTER TABLE `food`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `hobbies`
+--
+ALTER TABLE `hobbies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `interests`
+--
+ALTER TABLE `interests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
@@ -54397,6 +54818,12 @@ ALTER TABLE `languages1`
 --
 ALTER TABLE `login`
   MODIFY `guid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `music`
+--
+ALTER TABLE `music`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `occupations`
@@ -54432,7 +54859,13 @@ ALTER TABLE `plans`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `profile_images`
+--
+ALTER TABLE `profile_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `profile_interests`
@@ -54471,10 +54904,22 @@ ALTER TABLE `religions`
   MODIFY `guid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `religious_values`
+--
+ALTER TABLE `religious_values`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `sms_templates`
 --
 ALTER TABLE `sms_templates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `sports`
+--
+ALTER TABLE `sports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `states`
